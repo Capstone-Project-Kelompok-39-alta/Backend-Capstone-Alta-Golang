@@ -4,8 +4,7 @@
 
 Struktur Folder
 - APP = Isinya hanya main.go
-- Database = Konfigurasi Database dan setting Environment
-- Infrastructure = isi nya Folder Route, Middleware, http(setting server.go)
+- Infrastructure = isi nya Folder Database(database dan env) dan Http(route, middleware, server)
 - Interface/Controller = isinya file controller/layer Controller
 - Repository = isinya file repository/layer repository
 - Service = isinya file service/layer service
