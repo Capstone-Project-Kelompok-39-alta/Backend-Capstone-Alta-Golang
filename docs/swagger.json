@@ -1,0 +1,92 @@
+{
+    "swagger": "2.0",
+    "basePath": "/https://InvoiceSystemCapstone.com",
+    "info": {
+        "contact":{
+            "email": "support@Capstone39.com",
+            "name": "API Support",
+            "url": "http://vidlearn.com/"
+        },
+        "description": "API untuk user",
+        "title": "User Invoice",
+        "version": "1.0"
+    },
+    "paths": {
+        "/register": {
+            "post": {
+                "description": "create a new user",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Register"
+                ],
+                "summary": "Create a new user",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/Request.Register"
+                        }
+                    }
+                }
+            }
+        },
+        "/login": {
+            "post": {
+                "description": "login to website by input email and password",
+                "consumes" : [
+                    "application/json"
+                ],
+                "produces" : [
+                    "application/json"
+                ],
+                "tags": [
+                    "Login"
+                ],
+                "summary": "login user",
+                "responses": {
+                    "200" : {
+                        "description": "OK",
+                        "schema" : {
+                            "$ref" : "#/definitions/Request.Login"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "Request.Register": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "name": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        },
+        "Request.Login": {
+            "type": "object",
+            "properties": {
+                "email": {
+                    "type": "string"
+                },
+                "password": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "schemes": [
+        "http"
+    ]
+}

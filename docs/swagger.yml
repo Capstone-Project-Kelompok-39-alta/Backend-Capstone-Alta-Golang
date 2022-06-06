@@ -1,0 +1,34 @@
+definitions:
+  content.Content:
+    properties:
+      description:
+        type: string
+      id:
+        type: integer
+      name:
+        type: string
+      version:
+        type: integer
+    type: object
+info:
+  contact: {}
+  description: Berikut API yang digunakan untuk mini project
+  title: Clean Hexa Sample API
+  version: "1.0"
+paths:
+  /v1/content:
+    post:
+      consumes:
+      - application/json
+      description: create content with data
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/content.Content'
+      summary: Create content
+      tags:
+      - content
+swagger: "2.0"
