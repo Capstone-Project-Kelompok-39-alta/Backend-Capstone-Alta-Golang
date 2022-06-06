@@ -31,3 +31,9 @@ func (r *repository) LoginRepository(id_Pegawai int) (credential entities.Admin,
 
 	return credential, nil
 }
+
+func (r *repository) GetUserRepository(name string) (entities.Admin, error) {
+	var admin entities.Admin
+	r.DB.Where("name = ? ", name).First(&admin)
+	return admin, nil
+}

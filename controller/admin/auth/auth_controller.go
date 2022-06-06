@@ -67,3 +67,21 @@ func (co *AuthController) Login(c echo.Context) error {
 		"data":    token,
 	})
 }
+
+func (co *AuthController) GetUser(c echo.Context) error {
+	name := c.Param("name")
+
+	admin, er := co.Svc.GetUserService(name)
+
+	if er != nil {
+		return c.JSON(http.StatusNotFound, map[string]interface{}{
+			"message": "user not found",
+			"data":    er.Error(),
+		})
+	}
+
+	return c.JSON(http.StatusOK, map[string]interface{}{
+		"message": "success get user admin by name",
+		"data":    admin,
+	})
+}
