@@ -1,8 +1,10 @@
 package server
 
 import (
+	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/constant"
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/database"
 	authAdmin "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/http/routes/admin/auth"
+	uploadCsv "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/http/routes/admin/upload_csv"
 	"github.com/labstack/echo/v4"
 )
 
@@ -11,6 +13,7 @@ func Server() *echo.Echo {
 	conf := database.Config{}
 
 	authAdmin.Routes(app, conf)
-
+	uploadCsv.Routes(app, conf)
+	app.Static(constant.STATIC_FILE_UPLOAD_CSV, constant.DIR_FILE_UPLOAD_CSV)
 	return app
 }

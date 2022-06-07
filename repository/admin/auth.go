@@ -1,4 +1,4 @@
-package auth
+package admin
 
 import (
 	domains "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/domains/admin"
@@ -6,17 +6,17 @@ import (
 	"gorm.io/gorm"
 )
 
-type repository struct {
+type repositoryAuth struct {
 	DB *gorm.DB
 }
 
 func NewAuthRepository(db *gorm.DB) domains.AuthRepository {
-	return &repository{
+	return &repositoryAuth{
 		DB: db,
 	}
 }
 
-func (r *repository) RegisterRepository(admin entities.Admin) error {
+func (r *repositoryAuth) RegisterRepository(admin entities.Admin) error {
 	response := r.DB.Create(&admin)
 
 	if response.Error != nil {
@@ -26,13 +26,13 @@ func (r *repository) RegisterRepository(admin entities.Admin) error {
 	return nil
 }
 
-func (r *repository) LoginRepository(id_Pegawai int) (credential entities.Admin, err error) {
+func (r *repositoryAuth) LoginRepository(id_Pegawai int) (credential entities.Admin, err error) {
 	err = r.DB.Raw("SELECT * FROM admin WHERE id_pegawai = ?", id_Pegawai).Scan(&credential).Error
 
 	return credential, nil
 }
 
-func (r *repository) GetUserRepository(name string) (entities.Admin, error) {
+func (r *repositoryAuth) GetUserRepository(name string) (entities.Admin, error) {
 	var admin entities.Admin
 	r.DB.Where("name = ? ", name).First(&admin)
 	return admin, nil
