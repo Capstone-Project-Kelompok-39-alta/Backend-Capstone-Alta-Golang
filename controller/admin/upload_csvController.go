@@ -64,9 +64,21 @@ func (co *UploadCsvController) UploadCsvController(c echo.Context) error {
 	if _, fail := io.Copy(csvFile, src); fail != nil {
 		return fail
 	}
-	var invoice []admin.Invoice
 
-	data := gocsv.UnmarshalFile(csvFile, &invoice)
+	csvfile, failed := os.OpenFile(locationFile, os.O_RDWR|os.O_CREATE, os.ModePerm)
+
+	if failed != nil {
+		return failed
+	}
+	defer func(csvfile *os.File) {
+		err := csvfile.Close()
+		if err != nil {
+			err.Error()
+		}
+	}(csvfile)
+	invoice := []*admin.Invoice{}
+
+	data := gocsv.UnmarshalFile(csvfile, &invoice)
 	return c.JSON(http.StatusOK, map[string]interface{}{
 		"message": "success to upload file",
 		"data":    data,
