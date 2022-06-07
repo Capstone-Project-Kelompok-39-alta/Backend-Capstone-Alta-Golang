@@ -26,18 +26,6 @@ func (s *svcAuth) RegisterService(admin entities.Admin) error {
 	password, _ := bcrypt.GenerateFromPassword([]byte(admin.Password), bcrypt.DefaultCost)
 	admin.Password = string(password)
 
-	/*
-		// Make Limit if user_id more than 8 error and if user_id less than 8 error and if user_id same 8 success
-
-		if admin.IdPegawai < 7 {
-			return errors.New("your id pegawai less than 8")
-		} else if admin.IdPegawai > 8 {
-			return errors.New("your id pegawai less than 8")
-		} else {
-			return s.repo.RegisterRepository(admin)
-		}
-	*/
-
 	return s.repo.RegisterRepository(admin)
 }
 
