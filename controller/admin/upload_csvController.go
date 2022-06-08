@@ -1,6 +1,7 @@
 package admin
 
 import (
+	"fmt"
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/constant"
 	domains "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/domains/admin"
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/entities/admin"
@@ -78,9 +79,14 @@ func (co *UploadCsvController) UploadCsvController(c echo.Context) error {
 	}(csvfile)
 	invoice := []*admin.Invoice{}
 
-	data := gocsv.UnmarshalFile(csvfile, &invoice)
+	f := gocsv.UnmarshalFile(csvfile, &invoice)
+	if f != nil {
+		fmt.Println(f)
+		return f
+	}
+
 	return c.JSON(http.StatusOK, map[string]interface{}{
 		"message": "success to upload file",
-		"data":    data,
+		"data":    invoice,
 	})
 }

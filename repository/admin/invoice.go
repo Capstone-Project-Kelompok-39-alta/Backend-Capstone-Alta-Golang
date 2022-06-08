@@ -16,5 +16,13 @@ func NewInvoiceRepository(db *gorm.DB) domains.InvoiceRepository {
 	}
 }
 
+func (r *repositoryInvoice) CreateInvoiceRepository(Invoice entities.Invoice) error {
+	invoiceInsert := r.DB.Create(&Invoice)
+
+	if invoiceInsert.Error != nil {
+		return invoiceInsert.Error
+	}
+	return nil
+}
 func (r *repositoryInvoice) GetInvoiceRepository(Invoice entities.Invoice) {
 }

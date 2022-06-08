@@ -12,8 +12,8 @@ type Invoice struct {
 	BuyerPhone  string    `json:"buyer_phone" csv:"buyer_phone"`
 	BuyerEmail  string    `json:"buyer_email" csv:"buyer_email"`
 	DueDate     time.Time `json:"due_date" csv:"due_date"`
-	tax         string    `json:"tax" csv:"tax"`
-	total       string    `json:"total" csv:"total"`
+	Tax         string    `json:"tax" csv:"tax"`
+	Total       string    `json:"total" csv:"total"`
 }
 
 func (*Invoice) TableName() string {
