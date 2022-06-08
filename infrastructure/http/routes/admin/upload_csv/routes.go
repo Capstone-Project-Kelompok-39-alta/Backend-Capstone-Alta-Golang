@@ -11,9 +11,12 @@ import (
 func Routes(echo *echo.Echo, conf database.Config) {
 	db := database.InitDB(conf)
 	repo := admin2.NewUploadCsvRepository(db)
+	repoInvoice := admin2.NewInvoiceRepository(db)
 	svc := admin3.NewUploadCsvService(repo, conf)
+	svcInvoice := admin3.NewInvoiceService(repoInvoice, conf)
 	controller := upload_csv2.UploadCsvController{
-		Svc: svc,
+		SvcInvoice: svcInvoice,
+		Svc:        svc,
 	}
 
 	echo.POST("/admin/upload_csv", controller.UploadCsvController)

@@ -16,7 +16,8 @@ import (
 )
 
 type UploadCsvController struct {
-	Svc domains.UploadCsvService
+	Svc        domains.UploadCsvService
+	SvcInvoice domains.InvoiceService
 }
 
 func (co *UploadCsvController) UploadCsvController(c echo.Context) error {
@@ -77,16 +78,23 @@ func (co *UploadCsvController) UploadCsvController(c echo.Context) error {
 			err.Error()
 		}
 	}(csvfile)
-	invoice := []*admin.Invoice{}
+	invoices := []*admin.Invoice{}
 
-	f := gocsv.UnmarshalFile(csvfile, &invoice)
+	f := gocsv.UnmarshalFile(csvfile, &invoices)
 	if f != nil {
 		fmt.Println(f)
 		return f
 	}
 
+	for _, invoice := range invoices {
+		err := co.SvcInvoice.CreateInvoiceService(*invoice)
+		if err != nil {
+			return err
+		}
+	}
+
 	return c.JSON(http.StatusOK, map[string]interface{}{
 		"message": "success to upload file",
-		"data":    invoice,
+		"data":    invoices,
 	})
 }
