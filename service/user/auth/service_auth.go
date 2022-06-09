@@ -21,10 +21,10 @@ func NewAuthService(repo domains.AuthRepository, c database.Config) *svcAuth {
 	}
 }
 
-func (s *svcAuth) RegisterService(admin entities.User) error {
-	password, _ := bcrypt.GenerateFromPassword([]byte(admin.Password), bcrypt.DefaultCost)
-	admin.Password = string(password)
-	return s.repo.RegisterRepository(admin)
+func (s *svcAuth) RegisterService(user entities.User) error {
+	password, _ := bcrypt.GenerateFromPassword([]byte(user.Password), bcrypt.DefaultCost)
+	user.Password = string(password)
+	return s.repo.RegisterRepository(user)
 }
 
 func (s *svcAuth) LoginService(email string, password string) (string, int) {
