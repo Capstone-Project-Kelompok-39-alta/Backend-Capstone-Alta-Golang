@@ -6,6 +6,7 @@ import (
 	domains "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/domains/user"
 	entities "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/entities/user"
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/database"
+	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/http/middleware"
 	"golang.org/x/crypto/bcrypt"
 )
 
@@ -36,11 +37,10 @@ func (s *svcAuth) LoginService(email string, password string) (string, int) {
 		return "wrong password", http.StatusUnauthorized
 	}
 
-	// if (user.IdPegawai != email) || (user.Email < 8) {
-	// 	return "your id_pegawai error", http.StatusUnauthorized
-	// }
+	if user.Email != email {
+		return "your email error", http.StatusUnauthorized
+	}
 
-	// token, _ := middleware.CreateToken(int(user.ID), user.IdPegawai, s.c.JWT_KEY)
-	return user.Email, http.StatusOK
-	// return http.StatusOK
+	token, _ := middleware.CreateToken(int(user.ID), user.Email, s.c.JWT_KEY)
+	return token, http.StatusOK
 }

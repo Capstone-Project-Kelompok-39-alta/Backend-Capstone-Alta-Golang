@@ -27,7 +27,7 @@ func (r *repository) RegisterRepository(user entities.User) error {
 }
 
 func (r *repository) LoginRepository(email string) (credential entities.User, err error) {
-	err = r.DB.Raw("SELECT * FROM user WHERE email = ?", email).Scan(&credential).Error
+	err = r.DB.Raw("SELECT * FROM users WHERE email = ?", email).Scan(&credential).Error
 
 	return credential, nil
 }

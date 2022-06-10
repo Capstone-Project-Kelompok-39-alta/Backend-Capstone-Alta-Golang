@@ -17,7 +17,3 @@ type RegisterUser struct {
 	Email    string `json:"email" validate:"required" gorm:"column:email;size:255"`
 	Password string `json:"password" validate:"required" gorm:"column:password;size:255"`
 }
-
-// func (*Admin) TableName() string {
-// 	return "admin"
-// }

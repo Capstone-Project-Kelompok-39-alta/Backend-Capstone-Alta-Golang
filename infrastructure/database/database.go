@@ -14,7 +14,7 @@ type Config struct {
 	DB_NAME     string
 	DB_PORT     string
 	DB_HOST     string
-	//JWT_KEY     string
+	JWT_KEY     string
 }
 
 func InitDB(conf Config) *gorm.DB {

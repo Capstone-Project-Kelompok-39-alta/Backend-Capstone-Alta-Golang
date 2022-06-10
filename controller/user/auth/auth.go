@@ -33,7 +33,7 @@ func (co *AuthController) Register(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"message": "success register admin",
+		"message": "success register user",
 		"data":    user,
 	})
 }
@@ -49,22 +49,22 @@ func (co *AuthController) Login(c echo.Context) error {
 		})
 	}
 
-	// token, statusCode := co.Svc.LoginService(UserLogin.Email, UserLogin.Password)
+	token, statusCode := co.Svc.LoginService(UserLogin.Email, UserLogin.Password)
 
-	// if statusCode == http.StatusUnauthorized {
-	// 	return c.JSON(http.StatusUnauthorized, map[string]interface{}{
-	// 		"message":    "your email and password wrong",
-	// 		"statusCode": statusCode,
-	// 	})
-	// } else if statusCode == http.StatusInternalServerError {
-	// 	return c.JSON(http.StatusInternalServerError, map[string]interface{}{
-	// 		"message":    "internal server error",
-	// 		"statusCode": statusCode,
-	// 	})
-	// }
+	if statusCode == http.StatusUnauthorized {
+		return c.JSON(http.StatusUnauthorized, map[string]interface{}{
+			"message":    "your email and password wrong",
+			"statusCode": statusCode,
+		})
+	} else if statusCode == http.StatusInternalServerError {
+		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
+			"message":    "internal server error",
+			"statusCode": statusCode,
+		})
+	}
 
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"message": "success login admin",
-		//"data":    token,
+		"message": "success login user",
+		"data":    token,
 	})
 }
