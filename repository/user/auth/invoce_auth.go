@@ -10,12 +10,12 @@ type repositoryInvoice struct {
 	DB *gorm.DB
 }
 
-func NewInvoiceRepository(db *gorm.DB) domains.NewInvoiceRepository {
+func NewInvoiceRepository(db *gorm.DB) domains.AuthInvoiceRepository {
 	return &repositoryInvoice{
 		DB: db,
 	}
 }
 
-func (r *repository) InvoiceRepository(numbertelkom int) (user entities.Invoice, err error) {
+func (r *repositoryInvoice) InvoiceRepository(numbertelkom int) (user entities.Invoice, err error) {
 	return
 }

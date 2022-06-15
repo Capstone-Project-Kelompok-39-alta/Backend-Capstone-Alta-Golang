@@ -9,10 +9,10 @@ import (
 )
 
 type InvoiceController struct {
-	Svc domains.AuthService
+	Svc domains.AuthInvoiceService
 }
 
-func (co *AuthController) Invoice(c echo.Context) error {
+func (co *InvoiceController) Invoice(c echo.Context) error {
 	UserLogin := entities.Invoice{}
 
 	err := c.Bind(&UserLogin)
@@ -23,7 +23,7 @@ func (co *AuthController) Invoice(c echo.Context) error {
 		})
 	}
 
-	statusCode := co.Svc.invoiceTelkom(UserLogin.NumberTelkom)
+	statusCode := co.Svc.InvoiceService(UserLogin.NumberTelkom)
 
 	if statusCode == http.StatusUnauthorized {
 		return c.JSON(http.StatusUnauthorized, map[string]interface{}{
