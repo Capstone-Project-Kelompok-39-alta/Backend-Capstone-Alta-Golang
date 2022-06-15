@@ -16,14 +16,6 @@ func NewInvoiceRepository(db *gorm.DB) domains.NewInvoiceRepository {
 	}
 }
 
-func (r *repository) Telkom(NumberTelkom string) (credential entities.User, err error) {
-	err = r.DB.Raw("SELECT * FROM users WHERE numbertelkom = ?", NumberTelkom).Scan(&credential).Error
-
-	return credential, nil
-}
-
-func (r *repository) PLN(NumberPLN string) (credential entities.User, err error) {
-	err = r.DB.Raw("SELECT * FROM users WHERE numberpln = ?", NumberPLN).Scan(&credential).Error
-
-	return credential, nil
+func (r *repository) InvoiceRepository(numbertelkom int) (user entities.Invoice, err error) {
+	return
 }

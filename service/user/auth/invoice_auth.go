@@ -1,9 +1,8 @@
 package auth
 
 import (
-	"net/http"
-
 	domains "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/domains/user"
+	// entities "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/entities/user"
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/database"
 )
 
@@ -19,22 +18,7 @@ func NewInvoiceAuthService(repo domains.AuthRepository, c database.Config) *svcA
 	}
 }
 
-func (s *svcAuth) invoceTelkom(numbertelkom int) error {
-	user, _ := s.repo.LoginRepository(numbertelkom)
-
-	if user.NumberTelkom != numbertelkom {
-		return "your email error", http.StatusUnauthorized
-	}
-
-	return http.StatusOK
-}
-
-func (s *svcAuth) invocePLN(numberpln int) int {
-	user, _ := s.repo.LoginRepository(numberpln)
-
-	if user.Numberpln != numberpln {
-		return "your email error", http.StatusUnauthorized
-	}
-
-	return http.StatusOK
+func (s *svcAuth) InvoiceService(numbertelkom int) int {
+	service, err := s.repo.NewInvoiceRepository(numbertelkom)
+	return service, err
 }

@@ -6,10 +6,10 @@ import (
 
 type NewInvoiceRepository interface {
 	InvoiceRepository(numbertelkom int) (user entities.Invoice, err error)
-	RegisterRepository(user entities.User) error
+	//RegisterRepository(user entities.User) error
 }
 
 type NewAuthService interface {
 	InvoiceService(numbertelkom int) int
-	RegisterService(user entities.User) error
+	//RegisterService(user entities.User) error
 }
