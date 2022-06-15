@@ -18,9 +18,19 @@ func NewInvoiceService(repo domains.InvoiceRepository, c database.Config) domain
 	}
 }
 
-func (s *svcInvoice) CreateInvoiceService(Invoice entities.Invoice) error {
-	return s.repo.CreateInvoiceRepository(Invoice)
+func (s *svcInvoice) CreateInvoiceService(invoice entities.Invoice) error {
+	return s.repo.CreateInvoiceRepository(invoice)
 }
 
-func (s *svcInvoice) GetInvoiceService(Invoice entities.Invoice) {
+func (s *svcInvoice) GetInvoiceUserService(issuerName string) (entities.Invoice, error) {
+	var invoice entities.Invoice
+
+	if issuerName != invoice.IssuerName {
+		return invoice, nil
+	} else {
+		return s.repo.GetInvoiceUserRepository(issuerName)
+	}
+}
+func (s *svcInvoice) GetAllInvoiceService() (invoice []entities.Invoice, err error) {
+	return s.repo.GetAllInvoiceRepository()
 }
