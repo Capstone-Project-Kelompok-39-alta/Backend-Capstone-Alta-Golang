@@ -15,9 +15,11 @@ func Routes(echo *echo.Echo, conf database.Config) {
 	repoInvoice := admin2.NewInvoiceRepository(db)
 	svc := admin3.NewUploadCsvService(repo, conf)
 	svcInvoice := admin3.NewInvoiceService(repoInvoice, conf)
+
 	controllerUpload := upload_csv2.UploadCsvController{
 		Svc: svc,
 	}
+
 	controllerInvoice := upload_csv2.InvoiceController{
 		Svc: svcInvoice,
 	}
