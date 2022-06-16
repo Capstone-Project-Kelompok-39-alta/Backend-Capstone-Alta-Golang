@@ -20,6 +20,6 @@ func Routes(echo *echo.Echo, conf database.Config) {
 	}
 
 	echo.POST("/admin/register", controller.Register)
-	echo.POST("/admin/login", controller.Login, m.JWTTokenMiddleware())
+	echo.POST("/admin/login", controller.Login)
 	echo.GET("/admin/user/:name", controller.GetUser, m.JWTTokenMiddleware())
 }
