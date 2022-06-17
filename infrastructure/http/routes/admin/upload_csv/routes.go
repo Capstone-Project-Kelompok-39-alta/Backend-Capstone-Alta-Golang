@@ -17,7 +17,8 @@ func Routes(echo *echo.Echo, conf database.Config) {
 	svcInvoice := admin3.NewInvoiceService(repoInvoice, conf)
 
 	controllerUpload := upload_csv2.UploadCsvController{
-		Svc: svc,
+		Svc:        svc,
+		SvcInvoice: svcInvoice,
 	}
 
 	controllerInvoice := upload_csv2.InvoiceController{
