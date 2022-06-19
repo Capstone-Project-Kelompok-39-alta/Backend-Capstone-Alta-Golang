@@ -16,16 +16,3 @@ func CheckExtensionFile(extension string) bool {
 	}
 	return false
 }
-
-func CheckExtensionEmail(extension string) bool {
-	allowed := []string{
-		"@gmail.com", "@yahoo.com", "@outlook.com", "@yahoo.co.id",
-	}
-	extension = strings.ToLower(extension)
-	for _, v := range allowed {
-		if v == extension {
-			return true
-		}
-	}
-	return false
-}
