@@ -25,9 +25,9 @@ func (r *repositoryInvoice) CreateInvoiceRepository(invoice entities.Invoice) er
 	return nil
 }
 
-func (r *repositoryInvoice) GetInvoiceUserRepository(issuerName string) (entities.Invoice, error) {
+func (r *repositoryInvoice) GetInvoiceUserRepository(id int) (entities.Invoice, error) {
 	var invoice entities.Invoice
-	r.DB.Where("issuer_name = ?", issuerName).First(&invoice)
+	r.DB.Where("id = ?", id).Preload("invoice").Find(&invoice)
 	return invoice, nil
 }
 

@@ -3,6 +3,7 @@ package admin
 import (
 	domains "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/domains/admin"
 	entities "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/entities/admin"
+	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/lib"
 	"github.com/labstack/echo/v4"
 	"net/http"
 )
@@ -14,6 +15,13 @@ type AuthController struct {
 func (co *AuthController) Register(c echo.Context) error {
 	admin := entities.Admin{}
 	err := c.Bind(&admin)
+
+	if !lib.CheckExtensionEmail(admin.Email) {
+		return c.JSON(http.StatusBadRequest, map[string]interface{}{
+			"message": "invalid extension email",
+			"status":  http.StatusBadRequest,
+		})
+	}
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]interface{}{

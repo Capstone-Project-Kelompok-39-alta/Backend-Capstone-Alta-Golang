@@ -4,12 +4,12 @@ import entities "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-A
 
 type InvoiceRepository interface {
 	CreateInvoiceRepository(invoice entities.Invoice) error
-	GetInvoiceUserRepository(issuerName string) (entities.Invoice, error)
+	GetInvoiceUserRepository(id int) (entities.Invoice, error)
 	GetAllInvoiceRepository() (invoice []entities.Invoice, err error)
 }
 
 type InvoiceService interface {
 	CreateInvoiceService(invoice entities.Invoice) error
-	GetInvoiceUserService(issuerName string) (entities.Invoice, error)
+	GetInvoiceUserService(id int) (entities.Invoice, error)
 	GetAllInvoiceService() (invoice []entities.Invoice, err error)
 }

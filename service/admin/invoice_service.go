@@ -22,13 +22,13 @@ func (s *svcInvoice) CreateInvoiceService(invoice entities.Invoice) error {
 	return s.repo.CreateInvoiceRepository(invoice)
 }
 
-func (s *svcInvoice) GetInvoiceUserService(issuerName string) (entities.Invoice, error) {
+func (s *svcInvoice) GetInvoiceUserService(id int) (entities.Invoice, error) {
 	var invoice entities.Invoice
 
-	if issuerName != invoice.IssuerName {
+	if id != invoice.Id {
 		return invoice, nil
 	} else {
-		return s.repo.GetInvoiceUserRepository(issuerName)
+		return s.repo.GetInvoiceUserRepository(id)
 	}
 }
 func (s *svcInvoice) GetAllInvoiceService() (invoice []entities.Invoice, err error) {
