@@ -1,7 +1,6 @@
 package admin
 
 import (
-	"errors"
 	domains "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/domains/admin"
 	entities "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/entities/admin"
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/database"
@@ -47,11 +46,5 @@ func (s *svcAuth) LoginService(id_pegawai int, password string) (string, int) {
 }
 
 func (s *svcAuth) GetUserService(name string) (entities.Admin, error) {
-	var admin entities.Admin
-
-	if name != admin.Name {
-		return admin, errors.New("error to get the name")
-	} else {
-		return s.repo.GetUserRepository(name)
-	}
+	return s.repo.GetUserRepository(name)
 }

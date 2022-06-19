@@ -73,6 +73,13 @@ func (co *AuthController) GetUser(c echo.Context) error {
 
 	admin, er := co.Svc.GetUserService(name)
 
+	if name != admin.Name {
+		return c.JSON(http.StatusNotFound, map[string]interface{}{
+			"message": "user name not found in database",
+			"status":  http.StatusNotFound,
+		})
+	}
+
 	if er != nil {
 		return c.JSON(http.StatusNotFound, map[string]interface{}{
 			"message": "user not found",
