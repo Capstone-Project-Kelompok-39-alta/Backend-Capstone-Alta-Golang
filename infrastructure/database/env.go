@@ -17,5 +17,6 @@ func EnvDatabase() Config {
 		DB_NAME:     os.Getenv("DB_NAME"),
 		DB_PORT:     os.Getenv("DB_PORT"),
 		DB_HOST:     os.Getenv("DB_HOST"),
+		BASE_URL:    os.Getenv("BASE_URL"),
 	}
 }
