@@ -23,14 +23,9 @@ func (s *svcInvoice) CreateInvoiceService(invoice entities.Invoice) error {
 }
 
 func (s *svcInvoice) GetInvoiceUserService(id int) (entities.Invoice, error) {
-	var invoice entities.Invoice
-
-	if id != invoice.Id {
-		return invoice, nil
-	} else {
-		return s.repo.GetInvoiceUserRepository(id)
-	}
+	return s.repo.GetInvoiceUserRepository(id)
 }
+
 func (s *svcInvoice) GetAllInvoiceService() (invoice []entities.Invoice, err error) {
 	return s.repo.GetAllInvoiceRepository()
 }

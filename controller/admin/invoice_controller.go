@@ -24,7 +24,7 @@ func (co *InvoiceController) GetAllInvoice(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"message": "success get invoice by issuer_name",
+		"message": "success get invoice by id",
 		"data":    invoice,
 	})
 }
