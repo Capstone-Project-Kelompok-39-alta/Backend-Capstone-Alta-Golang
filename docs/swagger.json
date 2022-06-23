@@ -1,7 +1,7 @@
 {
     "schemes": [
-        "http",
-        "https"
+        "https",
+        "http"
     ],
     "swagger": "2.0",
     "info": {
@@ -10,7 +10,7 @@
         "contact": {},
         "version": "2.0"
     },
-    "host": "localhost:8080",
+    "host": "backend-capstone-alta-golang-staging.up.railway.app",
     "paths": {
         "/admin/invoice": {
             "get": {
@@ -215,8 +215,8 @@
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "OK",
+                    "201": {
+                        "description": "Created",
                         "schema": {
                             "$ref": "#/definitions/entities.Invoice"
                         }

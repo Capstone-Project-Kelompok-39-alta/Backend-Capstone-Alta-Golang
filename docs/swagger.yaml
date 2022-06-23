@@ -68,7 +68,7 @@ definitions:
     - name
     - password
     type: object
-host: localhost:8080
+host: backend-capstone-alta-golang-staging.up.railway.app
 info:
   contact: {}
   description: This is Automatic Generate Invoice API Documentation
@@ -201,8 +201,8 @@ paths:
       produces:
       - application/json
       responses:
-        "200":
-          description: OK
+        "201":
+          description: Created
           schema:
             $ref: '#/definitions/entities.Invoice'
         "400":
@@ -242,8 +242,8 @@ paths:
       tags:
       - Auth
 schemes:
-- http
 - https
+- http
 securityDefinitions:
   JWT:
     in: header

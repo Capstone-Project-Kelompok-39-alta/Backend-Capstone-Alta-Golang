@@ -219,8 +219,8 @@ const docTemplate = `{
                     }
                 ],
                 "responses": {
-                    "200": {
-                        "description": "OK",
+                    "201": {
+                        "description": "Created",
                         "schema": {
                             "$ref": "#/definitions/entities.Invoice"
                         }
@@ -394,9 +394,9 @@ const docTemplate = `{
 // SwaggerInfo holds exported Swagger Info so clients can modify it
 var SwaggerInfo = &swag.Spec{
 	Version:          "2.0",
-	Host:             "localhost:8080",
+	Host:             "backend-capstone-alta-golang-staging.up.railway.app",
 	BasePath:         "",
-	Schemes:          []string{"http", "https"},
+	Schemes:          []string{"https", "http"},
 	Title:            "Automatic Generate Invoice System API Documentation",
 	Description:      "This is Automatic Generate Invoice API Documentation",
 	InfoInstanceName: "swagger",

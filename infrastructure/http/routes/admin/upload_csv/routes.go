@@ -26,6 +26,6 @@ func Routes(echo *echo.Echo, conf database.Config) {
 	}
 
 	echo.POST("/admin/upload_csv", controllerUpload.UploadCsvController, m.JWTTokenMiddleware())
-	echo.GET("/admin/invoice", controllerInvoice.GetInvoiceUser, m.JWTTokenMiddleware())
-	echo.GET("/admin/invoice/:id", controllerInvoice.GetAllInvoice, m.JWTTokenMiddleware())
+	echo.GET("/admin/invoice", controllerInvoice.GetAllInvoice, m.JWTTokenMiddleware())
+	echo.GET("/admin/invoice/:id", controllerInvoice.GetInvoiceUser, m.JWTTokenMiddleware())
 }
