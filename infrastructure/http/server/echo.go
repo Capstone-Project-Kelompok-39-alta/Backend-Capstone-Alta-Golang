@@ -14,7 +14,7 @@ import (
 // @title Automatic Generate Invoice System API Documentation
 // @description This is Automatic Generate Invoice API Documentation
 // @Version 2.0
-// @host localhost:8080
+// @host localhost
 // @BasePath
 // @schemes http https
 // @securityDefinitions.apiKey JWT
@@ -29,6 +29,6 @@ func Server() *echo.Echo {
 	app.Static(constant.STATIC_FILE_UPLOAD_CSV, constant.DIR_FILE_UPLOAD_CSV)
 	app.GET("/swagger/*", echoSwagger.WrapHandler)
 
-	docs.SwaggerInfo.Host = os.Getenv("BASE_URL")
+	docs.SwaggerInfo.Host = os.Getenv("APP_HOST")
 	return app
 }

@@ -10,7 +10,7 @@
         "contact": {},
         "version": "2.0"
     },
-    "host": "localhost:8080",
+    "host": "localhost",
     "paths": {
         "/admin/invoice": {
             "get": {
