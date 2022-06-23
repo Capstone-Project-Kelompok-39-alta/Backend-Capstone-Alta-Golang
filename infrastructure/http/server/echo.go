@@ -2,21 +2,21 @@ package server
 
 import (
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/constant"
+	docs "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/docs"
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/database"
 	authAdmin "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/http/routes/admin/auth"
 	uploadCsv "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/http/routes/admin/upload_csv"
 	"github.com/labstack/echo/v4"
 	echoSwagger "github.com/swaggo/echo-swagger"
-	"github.com/swaggo/swag/example/basic/docs"
 	"os"
 )
 
 // @title Automatic Generate Invoice System API Documentation
 // @description This is Automatic Generate Invoice API Documentation
 // @version 2.0
-// @host localhost:8080
+// @host backend-capstone-alta-golang-staging.up.railway.app
 // @BasePath
-// @schemes http https
+// @schemes https http
 // @securityDefinitions.apiKey JWT
 // @in header
 // @name Authorization

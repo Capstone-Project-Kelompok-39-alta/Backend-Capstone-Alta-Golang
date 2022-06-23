@@ -28,7 +28,7 @@ type UploadCsvController struct {
 // @Produce json
 // @Router /admin/upload_csv [post]
 // @Param file formData file true "csv_file"
-// @Success 200 {object} entities.Invoice
+// @Success 201 {object} entities.Invoice
 // @Failure 400 {object} entities.Invoice
 // @Security JWT
 func (co *UploadCsvController) UploadCsvController(c echo.Context) error {
