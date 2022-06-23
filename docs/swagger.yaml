@@ -190,7 +190,7 @@ paths:
   /admin/upload_csv:
     post:
       consumes:
-      - application/json
+      - json multipart/form-data
       description: UploadCsvController with upload file csv
       parameters:
       - description: csv_file

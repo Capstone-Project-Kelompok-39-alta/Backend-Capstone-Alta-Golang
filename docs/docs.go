@@ -200,7 +200,7 @@ const docTemplate = `{
                 ],
                 "description": "UploadCsvController with upload file csv",
                 "consumes": [
-                    "application/json"
+                    "json multipart/form-data"
                 ],
                 "produces": [
                     "application/json"
