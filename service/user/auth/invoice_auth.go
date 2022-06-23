@@ -1,24 +1,41 @@
 package auth
 
 import (
+	_user "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/controller/user/auth"
 	domains "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/domains/user"
-	// entities "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/entities/user"
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/database"
 )
 
 type invoceAuth struct {
 	c    database.Config
-	repo domains.AuthRepository
+	repo domains.AuthInvoiceRepository
 }
 
-func NewInvoiceAuthService(repo domains.AuthRepository, c database.Config) *svcAuth {
-	return &svcAuth{
+func NewInvoiceAuthService(repo domains.AuthInvoiceRepository, c database.Config) *invoceAuth {
+	return &invoceAuth{
 		c:    c,
 		repo: repo,
 	}
 }
 
-func (s *svcAuth) InvoiceService(numbertelkom int) int {
-	service, err := s.repo.NewInvoiceRepository(numbertelkom)
-	return service, err
+func (s *invoceAuth) TelkomselInvoiceService(numbertelkom int) (*_user.Telkom, error) {
+	user, err := s.repo.TelkomselInvoiceRepository(numbertelkom)
+
+	if err != nil {
+		return nil, err
+	}
+
+	userResponse := _user.InvoiceController(user)
+	return &userResponse, nil
 }
+
+// func (s *invoceAuth) TelkomselInvoiceService(numbertelkom int) error {
+// 	user, err := s.repo.TelkomselInvoiceRepository(numbertelkom)
+
+// 	if err != nil {
+// 		return nil, err
+// 	}
+
+// 	userResponse := _user.NewUserResponse(user)
+// 	return &userResponse, nil
+// }

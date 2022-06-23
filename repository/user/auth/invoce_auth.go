@@ -16,6 +16,10 @@ func NewInvoiceRepository(db *gorm.DB) domains.AuthInvoiceRepository {
 	}
 }
 
-func (r *repositoryInvoice) InvoiceRepository(numbertelkom int) (user entities.Invoice, err error) {
+func (r *repositoryInvoice) TelkomselInvoiceRepository(numbertelkom int) (user entities.InvoiceAdd, err error) {
+	return
+}
+
+func (r *repositoryInvoice) PLNInvoiceRepository(numbertelkom int) (user entities.InvoiceAdd, err error) {
 	return
 }

@@ -13,7 +13,7 @@ type InvoiceController struct {
 }
 
 func (co *InvoiceController) Invoice(c echo.Context) error {
-	UserLogin := entities.Invoice{}
+	UserLogin := entities.InvoiceAdd{}
 
 	err := c.Bind(&UserLogin)
 	if err != nil {
@@ -23,7 +23,7 @@ func (co *InvoiceController) Invoice(c echo.Context) error {
 		})
 	}
 
-	statusCode := co.Svc.InvoiceService(UserLogin.NumberTelkom)
+	statusCode := co.Svc.TelkomselInvoiceService(UserLogin.Telkomsel)
 
 	if statusCode == http.StatusUnauthorized {
 		return c.JSON(http.StatusUnauthorized, map[string]interface{}{

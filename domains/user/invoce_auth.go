@@ -5,9 +5,11 @@ import (
 )
 
 type AuthInvoiceRepository interface {
-	InvoiceRepository(numbertelkom int) (user entities.Invoice, err error)
+	TelkomselInvoiceRepository(numbertelkom int) (user entities.InvoiceAdd, err error)
+	PLNInvoiceRepository(numberpln int) (user entities.InvoiceAdd, err error)
 }
 
 type AuthInvoiceService interface {
-	InvoiceService(numbertelkom int) int
+	TelkomselInvoiceService(numbertelkom int) int
+	PLNInvoiceService(numbertelkom int) int
 }
