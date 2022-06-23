@@ -10,7 +10,7 @@
         "contact": {},
         "version": "2.0"
     },
-    "host": "localhost:8080",
+    "host": "backend-capstone-alta-golang-staging.up.railway.app",
     "paths": {
         "/admin/invoice": {
             "get": {
