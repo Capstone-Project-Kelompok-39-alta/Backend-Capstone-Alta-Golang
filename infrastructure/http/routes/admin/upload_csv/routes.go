@@ -1,7 +1,7 @@
 package upload_csv
 
 import (
-	upload_csv2 "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/controller/admin"
+	uploadcsv2 "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/controller/admin"
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/database"
 	m "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/http/middleware"
 	admin2 "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/repository/admin"
@@ -16,12 +16,12 @@ func Routes(echo *echo.Echo, conf database.Config) {
 	svc := admin3.NewUploadCsvService(repo, conf)
 	svcInvoice := admin3.NewInvoiceService(repoInvoice, conf)
 
-	controllerUpload := upload_csv2.UploadCsvController{
+	controllerUpload := uploadcsv2.UploadCsvController{
 		Svc:        svc,
 		SvcInvoice: svcInvoice,
 	}
 
-	controllerInvoice := upload_csv2.InvoiceController{
+	controllerInvoice := uploadcsv2.InvoiceController{
 		Svc: svcInvoice,
 	}
 

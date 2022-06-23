@@ -2,7 +2,7 @@ package admin
 
 import (
 	domains "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/domains/admin"
-	entities "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/entities/admin"
+	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/entities/admin"
 	"github.com/labstack/echo/v4"
 	"net/http"
 )
@@ -11,9 +11,20 @@ type AuthController struct {
 	Svc domains.AuthService
 }
 
+// Register godoc
+// @Summary Register User Admin
+// @Description Create User Admin
+// @Tags Auth
+// @accept json
+// @Produce json
+// @Router /admin/register [post]
+// @Param data body admin.RegisterAdmin true "required"
+// @Success 201 {object} admin.Admin
+// @Failure 401 {object} admin.Admin
+// @Failure 500 {object} admin.Admin
 func (co *AuthController) Register(c echo.Context) error {
-	admin := entities.Admin{}
-	err := c.Bind(&admin)
+	admins := admin.Admin{}
+	err := c.Bind(&admins)
 
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
@@ -22,7 +33,7 @@ func (co *AuthController) Register(c echo.Context) error {
 		})
 	}
 
-	er := co.Svc.RegisterService(admin)
+	er := co.Svc.RegisterService(admins)
 
 	if er != nil {
 		return c.JSON(http.StatusUnauthorized, map[string]interface{}{
@@ -33,12 +44,24 @@ func (co *AuthController) Register(c echo.Context) error {
 
 	return c.JSON(http.StatusCreated, map[string]interface{}{
 		"message": "success register admin",
-		"data":    admin,
+		"data":    admins,
 	})
 }
 
+// Login godoc
+// @Summary Login User Admin
+// @Description Login User Admin
+// @Tags Auth
+// @accept json
+// @Produce json
+// @Router /admin/login [post]
+// @Param data body admin.LoginAdmin true "required"
+// @Success 200 {object} admin.Admin
+// @Failure 400 {object} admin.Admin
+// @Failure 401 {object} admin.Admin
+// @Failure 500 {object} admin.Admin
 func (co *AuthController) Login(c echo.Context) error {
-	adminLogin := entities.Admin{}
+	adminLogin := admin.Admin{}
 
 	err := c.Bind(&adminLogin)
 	if err != nil {
@@ -68,10 +91,21 @@ func (co *AuthController) Login(c echo.Context) error {
 	})
 }
 
+// GetUser godoc
+// @Summary Get User With name
+// @Description Admin can get the user name
+// @Tags Auth
+// @accept json
+// @Produce json
+// @Router /admin/user/{name} [get]
+// @Param name path string true "name"
+// @Success 200 {object} admin.Admin
+// @Failure 404 {object} admin.Admin
+// @Security JWT
 func (co *AuthController) GetUser(c echo.Context) error {
 	name := c.Param("name")
 
-	admin, er := co.Svc.GetUserService(name)
+	admins, er := co.Svc.GetUserService(name)
 
 	if er != nil {
 		return c.JSON(http.StatusNotFound, map[string]interface{}{
@@ -82,6 +116,6 @@ func (co *AuthController) GetUser(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, map[string]interface{}{
 		"message": "success get user admin by name",
-		"data":    admin,
+		"data":    admins,
 	})
 }

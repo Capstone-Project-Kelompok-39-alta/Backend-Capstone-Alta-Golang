@@ -20,6 +20,17 @@ type UploadCsvController struct {
 	SvcInvoice domains.InvoiceService
 }
 
+// UploadCsvController godoc
+// @Summary Admin can Upload Csv
+// @Description UploadCsvController with upload file csv
+// @Tags Invoice
+// @accept json
+// @Produce json
+// @Router /admin/upload_csv [post]
+// @Param file formData file true "csv_file"
+// @Success 200 {object} admin.Invoice
+// @Failure 400 {object} admin.Invoice
+// @Security JWT
 func (co *UploadCsvController) UploadCsvController(c echo.Context) error {
 	file, err := c.FormFile("csv_file")
 

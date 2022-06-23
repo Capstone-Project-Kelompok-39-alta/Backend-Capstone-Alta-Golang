@@ -1,0 +1,252 @@
+definitions:
+  admin.Admin:
+    properties:
+      email:
+        type: string
+      id:
+        type: integer
+      id_pegawai:
+        type: integer
+      name:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - id_pegawai
+    - name
+    - password
+    type: object
+  admin.Invoice:
+    properties:
+      buyer_email:
+        type: string
+      buyer_name:
+        type: string
+      buyer_phone:
+        type: string
+      due_date:
+        type: string
+      id:
+        type: integer
+      id_csv_file:
+        type: integer
+      issuer_email:
+        type: string
+      issuer_name:
+        type: string
+      issuer_phone:
+        type: string
+      tax:
+        type: integer
+      total:
+        type: integer
+    type: object
+  admin.LoginAdmin:
+    properties:
+      id_pegawai:
+        type: integer
+      password:
+        type: string
+    required:
+    - id_pegawai
+    - password
+    type: object
+  admin.RegisterAdmin:
+    properties:
+      email:
+        type: string
+      id_pegawai:
+        type: integer
+      name:
+        type: string
+      password:
+        type: string
+    required:
+    - email
+    - id_pegawai
+    - name
+    - password
+    type: object
+host: localhost:8080
+info:
+  contact: {}
+  description: This is Automatic Generate Invoice API Documentation
+  title: Automatic Generate Invoice System API Documentation
+  version: "2.0"
+paths:
+  /admin/invoice:
+    get:
+      consumes:
+      - application/json
+      description: Admin Get All Invoice User
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/admin.Invoice'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/admin.Invoice'
+      security:
+      - JWT: []
+      summary: Get All Invoice
+      tags:
+      - Invoice
+  /admin/invoice/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Admin can Get Invoice User By ID
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/admin.Invoice'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/admin.Invoice'
+      security:
+      - JWT: []
+      summary: Get Invoice User By ID
+      tags:
+      - Invoice
+  /admin/login:
+    post:
+      consumes:
+      - application/json
+      description: Login User Admin
+      parameters:
+      - description: required
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/admin.LoginAdmin'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/admin.Admin'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/admin.Admin'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/admin.Admin'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/admin.Admin'
+      summary: Login User Admin
+      tags:
+      - Auth
+  /admin/register:
+    post:
+      consumes:
+      - application/json
+      description: Create User Admin
+      parameters:
+      - description: required
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/admin.RegisterAdmin'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/admin.Admin'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/admin.Admin'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/admin.Admin'
+      summary: Register User Admin
+      tags:
+      - Auth
+  /admin/upload_csv:
+    post:
+      consumes:
+      - application/json
+      description: UploadCsvController with upload file csv
+      parameters:
+      - description: csv_file
+        in: formData
+        name: file
+        required: true
+        type: file
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/admin.Invoice'
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/admin.Invoice'
+      security:
+      - JWT: []
+      summary: Admin can Upload Csv
+      tags:
+      - Invoice
+  /admin/user/{name}:
+    get:
+      consumes:
+      - application/json
+      description: Admin can get the user name
+      parameters:
+      - description: name
+        in: path
+        name: name
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/admin.Admin'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/admin.Admin'
+      security:
+      - JWT: []
+      summary: Get User With name
+      tags:
+      - Auth
+schemes:
+- http
+- https
+securityDefinitions:
+  JWT:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

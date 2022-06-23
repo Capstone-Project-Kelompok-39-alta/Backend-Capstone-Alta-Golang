@@ -11,7 +11,18 @@ type InvoiceController struct {
 	Svc domains.InvoiceService
 }
 
-func (co *InvoiceController) GetAllInvoice(c echo.Context) error {
+// GetInvoiceUser godoc
+// @Summary Get Invoice User By ID
+// @Description Admin can Get Invoice User By ID
+// @Tags Invoice
+// @accept json
+// @Produce json
+// @Router /admin/invoice/{id} [get]
+// @param id path int true "id"
+// @Success 200 {object} admin.Invoice
+// @Failure 500 {object} admin.Invoice
+// @Security JWT
+func (co *InvoiceController) GetInvoiceUser(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
 
 	invoice, err := co.Svc.GetInvoiceUserService(id)
@@ -29,7 +40,17 @@ func (co *InvoiceController) GetAllInvoice(c echo.Context) error {
 	})
 }
 
-func (co *InvoiceController) GetInvoiceUser(c echo.Context) error {
+// GetAllInvoice godoc
+// @Summary Get All Invoice
+// @Description Admin Get All Invoice User
+// @Tags Invoice
+// @accept json
+// @Produce json
+// @Router /admin/invoice [get]
+// @Success 200 {object} admin.Invoice
+// @Failure 500 {object} admin.Invoice
+// @Security JWT
+func (co *InvoiceController) GetAllInvoice(c echo.Context) error {
 	invoice, err := co.Svc.GetAllInvoiceService()
 
 	if err != nil {
