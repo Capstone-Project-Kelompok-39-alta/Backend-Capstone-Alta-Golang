@@ -1,6 +1,8 @@
 package admin
 
-import entities "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/entities/admin"
+import (
+	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/entities"
+)
 
 type InvoiceRepository interface {
 	CreateInvoiceRepository(invoice entities.Invoice) error

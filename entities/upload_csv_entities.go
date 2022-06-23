@@ -1,4 +1,4 @@
-package admin
+package entities
 
 type UploadCsv struct {
 	File_csv string `json:"file_csv"`

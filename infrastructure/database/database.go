@@ -2,7 +2,7 @@ package database
 
 import (
 	"fmt"
-	entities "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/entities/admin"
+	entities2 "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/entities"
 	"gorm.io/driver/mysql"
 	"gorm.io/gorm"
 )
@@ -33,7 +33,7 @@ func InitDB(conf Config) *gorm.DB {
 		panic(err)
 	}
 
-	er := DB.AutoMigrate(&entities.Admin{}, &entities.Invoice{})
+	er := DB.AutoMigrate(&entities2.Admin{}, &entities2.Invoice{})
 
 	if er != nil {
 		panic(er)

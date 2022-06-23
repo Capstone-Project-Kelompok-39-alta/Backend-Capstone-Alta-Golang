@@ -38,13 +38,13 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/admin.Invoice"
+                            "$ref": "#/definitions/entities.Invoice"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/admin.Invoice"
+                            "$ref": "#/definitions/entities.Invoice"
                         }
                     }
                 }
@@ -81,13 +81,13 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/admin.Invoice"
+                            "$ref": "#/definitions/entities.Invoice"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/admin.Invoice"
+                            "$ref": "#/definitions/entities.Invoice"
                         }
                     }
                 }
@@ -113,7 +113,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/admin.LoginAdmin"
+                            "$ref": "#/definitions/entities.LoginAdmin"
                         }
                     }
                 ],
@@ -121,25 +121,25 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/admin.Admin"
+                            "$ref": "#/definitions/entities.Admin"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/admin.Admin"
+                            "$ref": "#/definitions/entities.Admin"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/admin.Admin"
+                            "$ref": "#/definitions/entities.Admin"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/admin.Admin"
+                            "$ref": "#/definitions/entities.Admin"
                         }
                     }
                 }
@@ -165,7 +165,7 @@ const docTemplate = `{
                         "in": "body",
                         "required": true,
                         "schema": {
-                            "$ref": "#/definitions/admin.RegisterAdmin"
+                            "$ref": "#/definitions/entities.RegisterAdmin"
                         }
                     }
                 ],
@@ -173,19 +173,19 @@ const docTemplate = `{
                     "201": {
                         "description": "Created",
                         "schema": {
-                            "$ref": "#/definitions/admin.Admin"
+                            "$ref": "#/definitions/entities.Admin"
                         }
                     },
                     "401": {
                         "description": "Unauthorized",
                         "schema": {
-                            "$ref": "#/definitions/admin.Admin"
+                            "$ref": "#/definitions/entities.Admin"
                         }
                     },
                     "500": {
                         "description": "Internal Server Error",
                         "schema": {
-                            "$ref": "#/definitions/admin.Admin"
+                            "$ref": "#/definitions/entities.Admin"
                         }
                     }
                 }
@@ -222,13 +222,13 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/admin.Invoice"
+                            "$ref": "#/definitions/entities.Invoice"
                         }
                     },
                     "400": {
                         "description": "Bad Request",
                         "schema": {
-                            "$ref": "#/definitions/admin.Invoice"
+                            "$ref": "#/definitions/entities.Invoice"
                         }
                     }
                 }
@@ -265,13 +265,13 @@ const docTemplate = `{
                     "200": {
                         "description": "OK",
                         "schema": {
-                            "$ref": "#/definitions/admin.Admin"
+                            "$ref": "#/definitions/entities.Admin"
                         }
                     },
                     "404": {
                         "description": "Not Found",
                         "schema": {
-                            "$ref": "#/definitions/admin.Admin"
+                            "$ref": "#/definitions/entities.Admin"
                         }
                     }
                 }
@@ -279,7 +279,7 @@ const docTemplate = `{
         }
     },
     "definitions": {
-        "admin.Admin": {
+        "entities.Admin": {
             "type": "object",
             "required": [
                 "email",
@@ -305,7 +305,7 @@ const docTemplate = `{
                 }
             }
         },
-        "admin.Invoice": {
+        "entities.Invoice": {
             "type": "object",
             "properties": {
                 "buyer_email": {
@@ -343,7 +343,7 @@ const docTemplate = `{
                 }
             }
         },
-        "admin.LoginAdmin": {
+        "entities.LoginAdmin": {
             "type": "object",
             "required": [
                 "id_pegawai",
@@ -358,7 +358,7 @@ const docTemplate = `{
                 }
             }
         },
-        "admin.RegisterAdmin": {
+        "entities.RegisterAdmin": {
             "type": "object",
             "required": [
                 "email",

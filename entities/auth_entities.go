@@ -1,4 +1,4 @@
-package admin
+package entities
 
 type Admin struct {
 	ID        uint   `gorm:"primaryKey"`

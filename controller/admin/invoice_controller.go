@@ -19,8 +19,8 @@ type InvoiceController struct {
 // @Produce json
 // @Router /admin/invoice/{id} [get]
 // @param id path int true "id"
-// @Success 200 {object} admin.Invoice
-// @Failure 500 {object} admin.Invoice
+// @Success 200 {object} entities.Invoice
+// @Failure 500 {object} entities.Invoice
 // @Security JWT
 func (co *InvoiceController) GetInvoiceUser(c echo.Context) error {
 	id, _ := strconv.Atoi(c.Param("id"))
@@ -47,8 +47,8 @@ func (co *InvoiceController) GetInvoiceUser(c echo.Context) error {
 // @accept json
 // @Produce json
 // @Router /admin/invoice [get]
-// @Success 200 {object} admin.Invoice
-// @Failure 500 {object} admin.Invoice
+// @Success 200 {object} entities.Invoice
+// @Failure 500 {object} entities.Invoice
 // @Security JWT
 func (co *InvoiceController) GetAllInvoice(c echo.Context) error {
 	invoice, err := co.Svc.GetAllInvoiceService()

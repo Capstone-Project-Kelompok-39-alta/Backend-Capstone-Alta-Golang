@@ -13,7 +13,7 @@ import (
 
 // @title Automatic Generate Invoice System API Documentation
 // @description This is Automatic Generate Invoice API Documentation
-// @Version 2.0
+// @version 2.0
 // @host backend-capstone-alta-golang-staging.up.railway.app
 // @BasePath
 // @schemes http https

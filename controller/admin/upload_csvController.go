@@ -4,7 +4,7 @@ import (
 	"fmt"
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/constant"
 	domains "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/domains/admin"
-	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/entities/admin"
+	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/entities"
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/lib"
 	"github.com/gocarina/gocsv"
 	"github.com/labstack/echo/v4"
@@ -28,8 +28,8 @@ type UploadCsvController struct {
 // @Produce json
 // @Router /admin/upload_csv [post]
 // @Param file formData file true "csv_file"
-// @Success 200 {object} admin.Invoice
-// @Failure 400 {object} admin.Invoice
+// @Success 200 {object} entities.Invoice
+// @Failure 400 {object} entities.Invoice
 // @Security JWT
 func (co *UploadCsvController) UploadCsvController(c echo.Context) error {
 	file, err := c.FormFile("csv_file")
@@ -89,7 +89,7 @@ func (co *UploadCsvController) UploadCsvController(c echo.Context) error {
 			err.Error()
 		}
 	}(csvfile)
-	invoices := []*admin.Invoice{}
+	invoices := []*entities.Invoice{}
 
 	f := gocsv.UnmarshalFile(csvfile, &invoices)
 	if f != nil {

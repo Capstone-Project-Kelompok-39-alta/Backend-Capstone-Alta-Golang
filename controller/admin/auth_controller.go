@@ -2,7 +2,7 @@ package admin
 
 import (
 	domains "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/domains/admin"
-	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/entities/admin"
+	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/entities"
 	"github.com/labstack/echo/v4"
 	"net/http"
 )
@@ -18,12 +18,12 @@ type AuthController struct {
 // @accept json
 // @Produce json
 // @Router /admin/register [post]
-// @Param data body admin.RegisterAdmin true "required"
-// @Success 201 {object} admin.Admin
-// @Failure 401 {object} admin.Admin
-// @Failure 500 {object} admin.Admin
+// @Param data body entities.RegisterAdmin true "required"
+// @Success 201 {object} entities.Admin
+// @Failure 401 {object} entities.Admin
+// @Failure 500 {object} entities.Admin
 func (co *AuthController) Register(c echo.Context) error {
-	admins := admin.Admin{}
+	admins := entities.Admin{}
 	err := c.Bind(&admins)
 
 	if err != nil {
@@ -55,13 +55,13 @@ func (co *AuthController) Register(c echo.Context) error {
 // @accept json
 // @Produce json
 // @Router /admin/login [post]
-// @Param data body admin.LoginAdmin true "required"
-// @Success 200 {object} admin.Admin
-// @Failure 400 {object} admin.Admin
-// @Failure 401 {object} admin.Admin
-// @Failure 500 {object} admin.Admin
+// @Param data body entities.LoginAdmin true "required"
+// @Success 200 {object} entities.Admin
+// @Failure 400 {object} entities.Admin
+// @Failure 401 {object} entities.Admin
+// @Failure 500 {object} entities.Admin
 func (co *AuthController) Login(c echo.Context) error {
-	adminLogin := admin.Admin{}
+	adminLogin := entities.Admin{}
 
 	err := c.Bind(&adminLogin)
 	if err != nil {
@@ -99,8 +99,8 @@ func (co *AuthController) Login(c echo.Context) error {
 // @Produce json
 // @Router /admin/user/{name} [get]
 // @Param name path string true "name"
-// @Success 200 {object} admin.Admin
-// @Failure 404 {object} admin.Admin
+// @Success 200 {object} entities.Admin
+// @Failure 404 {object} entities.Admin
 // @Security JWT
 func (co *AuthController) GetUser(c echo.Context) error {
 	name := c.Param("name")
