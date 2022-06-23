@@ -68,7 +68,7 @@ definitions:
     - name
     - password
     type: object
-host: backend-capstone-alta-golang-staging.up.railway.app
+host: localhost:8080
 info:
   contact: {}
   description: This is Automatic Generate Invoice API Documentation
