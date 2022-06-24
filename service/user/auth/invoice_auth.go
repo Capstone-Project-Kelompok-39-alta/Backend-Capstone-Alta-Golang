@@ -28,14 +28,3 @@ func (s *invoceAuth) TelkomselInvoiceService(numbertelkom int) (*_user.Telkom, e
 	userResponse := _user.InvoiceController(user)
 	return &userResponse, nil
 }
-
-// func (s *invoceAuth) TelkomselInvoiceService(numbertelkom int) error {
-// 	user, err := s.repo.TelkomselInvoiceRepository(numbertelkom)
-
-// 	if err != nil {
-// 		return nil, err
-// 	}
-
-// 	userResponse := _user.NewUserResponse(user)
-// 	return &userResponse, nil
-// }

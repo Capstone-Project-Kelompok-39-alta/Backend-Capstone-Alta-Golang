@@ -27,7 +27,7 @@ func (co *InvoiceController) Invoice(c echo.Context) error {
 
 	if statusCode == http.StatusUnauthorized {
 		return c.JSON(http.StatusUnauthorized, map[string]interface{}{
-			"message":    "your email and password wrong",
+			"message":    "your numberID wrong",
 			"statusCode": statusCode,
 		})
 	} else if statusCode == http.StatusInternalServerError {
@@ -38,6 +38,6 @@ func (co *InvoiceController) Invoice(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"message": "success login user",
+		"message": "success",
 	})
 }
