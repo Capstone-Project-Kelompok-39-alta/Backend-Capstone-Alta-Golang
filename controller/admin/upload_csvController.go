@@ -25,6 +25,7 @@ type UploadCsvController struct {
 // @Description UploadCsvController with upload file csv
 // @Tags Invoice
 // @accept multipart/form-data
+// @Produce json
 // @Router /admin/upload_csv [post]
 // @Param file formData file true "csv_file"
 // @Success 201 {object} entities.Invoice
