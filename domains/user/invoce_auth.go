@@ -11,5 +11,5 @@ type AuthInvoiceRepository interface {
 
 type AuthInvoiceService interface {
 	TelkomselInvoiceService(numbertelkom int) int
-	PLNInvoiceService(numbertelkom int) int
+	PLNInvoiceService(numberpln int) int
 }
