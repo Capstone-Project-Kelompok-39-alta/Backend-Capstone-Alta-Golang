@@ -1,0 +1,39 @@
+name: Pushing To DockerHub Repository
+on:
+  pull_request:
+    branches:
+      - "dev"
+  push:
+    branches:
+      - master
+jobs:
+  docker:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Set Up Qemu
+        uses: docker/setup-qemu-action@v1
+      - name: Set Up Docker Buildx
+        uses: docker/setup-buildx-action@v1
+      - name: Login To DockerHub
+        uses: docker/login-action@v1
+        with:
+          username: ${{ secrets.DOCKERHUB_USERNAME }}
+          password: ${{ secrets.DOCKERHUB_PASSWORD }}
+      - name: Build and Push
+        uses: docker/build-push-action@v2
+        with:
+          push: true
+          tags: sautmanurung234/mini-project:v1
+      - name: ssh aws ec2 and redeploy docker
+        uses: appleboy/ssh-action@master
+        with:
+          host: ${{ secrets.HOST }}
+          username: ${{ secrets.USERNAME }}
+          port: ${{ secrets.PORT }}
+          key: ${{ secrets.KEY }}
+          script: |
+            docker login -u sautmanurung234 -p X123stnd234
+            docker stop mini-project
+            docker container rm mini-project
+            docker pull sautmanurung234/mini-project:v1
+            docker run -e -p 80:8080 --name mini-project --detach sautmanurung234/mini-project:v1
