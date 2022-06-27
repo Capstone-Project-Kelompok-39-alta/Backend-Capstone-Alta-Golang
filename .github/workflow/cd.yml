@@ -20,7 +20,7 @@ jobs:
         uses: docker/build-push-action@v2
         with:
           push: true
-          tags: sautmanurung234/mini-project:v1
+          tags: sautmanurung234/capstone-project:v1
       - name: ssh aws ec2 and redeploy docker
         uses: appleboy/ssh-action@master
         with:
@@ -32,5 +32,5 @@ jobs:
             docker login -u sautmanurung234 -p X123stnd234
             docker stop mini-project
             docker container rm mini-project
-            docker pull sautmanurung234/mini-project:v1
-            docker run -e -p 80:8080 --name mini-project --detach sautmanurung234/mini-project:v1
+            docker pull sautmanurung234/capstone-project:v1
+            docker run -e -p 80:8080 --name capstone-project --detach sautmanurung234/capstone-project:v1
