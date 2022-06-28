@@ -1,6 +1,7 @@
 package admin
 
 import (
+	"errors"
 	domains "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/domains/admin"
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/entities"
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/database"
@@ -24,6 +25,14 @@ func NewAuthService(repo domains.AuthRepository, c database.Config) *svcAuth {
 func (s *svcAuth) RegisterService(admin entities.Admin) error {
 	password, _ := bcrypt.GenerateFromPassword([]byte(admin.Password), bcrypt.DefaultCost)
 	admin.Password = string(password)
+
+	if admin.Name == admin.Name {
+		return errors.New("this account was already registered before it")
+	} else if admin.IdPegawai == admin.IdPegawai {
+		return errors.New("this id pegawai was already registered before it")
+	} else if admin.Email == admin.Email {
+		return errors.New("this email was already registered before it")
+	}
 
 	return s.repo.RegisterRepository(admin)
 }
