@@ -7,6 +7,7 @@ import (
 	authAdmin "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/http/routes/admin/auth"
 	uploadCsv "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/http/routes/admin/upload_csv"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
 	echoSwagger "github.com/swaggo/echo-swagger"
 	"os"
 )
@@ -28,7 +29,9 @@ func Server() *echo.Echo {
 	uploadCsv.Routes(app, conf)
 	app.Static(constant.STATIC_FILE_UPLOAD_CSV, constant.DIR_FILE_UPLOAD_CSV)
 	app.GET("/swagger/*", echoSwagger.WrapHandler)
-
+	app.Use(middleware.Logger())
+	app.Use(middleware.Recover())
+	app.Use(middleware.CORS())
 	docs.SwaggerInfo.Host = os.Getenv("APP_HOST")
 	return app
 }

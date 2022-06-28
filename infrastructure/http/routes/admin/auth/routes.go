@@ -7,6 +7,8 @@ import (
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/repository/admin"
 	auth2 "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/service/admin"
 	"github.com/labstack/echo/v4"
+	"github.com/labstack/echo/v4/middleware"
+	"net/http"
 )
 
 func Routes(echo *echo.Echo, conf database.Config) {
@@ -19,6 +21,10 @@ func Routes(echo *echo.Echo, conf database.Config) {
 		Svc: svc,
 	}
 
+	echo.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"http://34.229.142.244"},
+		AllowHeaders: []string{http.MethodGet, http.MethodHead, http.MethodPost},
+	}))
 	echo.POST("/admin/register", controller.Register)
 	echo.POST("/admin/login", controller.Login)
 	echo.GET("/admin/user/:name", controller.GetUser, m.JWTTokenMiddleware())
