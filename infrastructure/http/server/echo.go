@@ -9,6 +9,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	echoSwagger "github.com/swaggo/echo-swagger"
+	"net/http"
 	"os"
 )
 
@@ -29,8 +30,12 @@ func Server() *echo.Echo {
 	uploadCsv.Routes(app, conf)
 	app.Static(constant.STATIC_FILE_UPLOAD_CSV, constant.DIR_FILE_UPLOAD_CSV)
 	app.GET("/swagger/*", echoSwagger.WrapHandler)
-	app.Use(middleware.Logger())
+	app.Use(middleware.CORSWithConfig(middleware.CORSConfig{
+		AllowOrigins: []string{"http://34.229.142.244", "https://34.229.142.244"},
+		AllowHeaders: []string{http.MethodGet, http.MethodHead, http.MethodPost, http.MethodPut, http.MethodPatch, http.MethodDelete},
+	}))
 	app.Use(middleware.Recover())
+	app.Use(middleware.Logger())
 	app.Use(middleware.CORS())
 	docs.SwaggerInfo.Host = os.Getenv("APP_HOST")
 	return app

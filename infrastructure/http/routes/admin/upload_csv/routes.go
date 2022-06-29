@@ -28,7 +28,7 @@ func Routes(echo *echo.Echo, conf database.Config) {
 	}
 
 	echo.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-		AllowOrigins: []string{"http://34.229.142.244"},
+		AllowOrigins: []string{"http://34.229.142.244", "https://34.229.142.244"},
 		AllowHeaders: []string{http.MethodGet, http.MethodHead, http.MethodPost},
 	}))
 
