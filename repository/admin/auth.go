@@ -1,7 +1,6 @@
 package admin
 
 import (
-	"errors"
 	domains "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/domains/admin"
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/entities"
 	"gorm.io/gorm"
@@ -18,14 +17,7 @@ func NewAuthRepository(db *gorm.DB) domains.AuthRepository {
 }
 
 func (r *repositoryAuth) RegisterRepository(admin entities.Admin) error {
-	idPegawai := admin.IdPegawai
 	r.DB.Create(&admin)
-	if idPegawai > 1 {
-		err := errors.New("this id pegawai is already registered on this website")
-		if err != nil {
-			return err
-		}
-	}
 	return nil
 }
 

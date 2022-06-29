@@ -36,7 +36,7 @@ func (co *AuthController) Register(c echo.Context) error {
 	er := co.Svc.RegisterService(admins)
 
 	if er != nil {
-		return c.JSON(http.StatusUnauthorized, map[string]interface{}{
+		return c.JSON(http.StatusBadRequest, map[string]interface{}{
 			"message": "user UnRegistered",
 			"data":    er.Error(),
 		})
