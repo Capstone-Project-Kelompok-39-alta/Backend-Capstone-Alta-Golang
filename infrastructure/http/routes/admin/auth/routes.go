@@ -22,9 +22,10 @@ func Routes(echo *echo.Echo, conf database.Config) {
 	}
 
 	echo.Use(middleware.CORSWithConfig(middleware.CORSConfig{
-		AllowOrigins: []string{"http://34.229.142.244", "https://34.229.142.244"},
-		AllowHeaders: []string{http.MethodGet, http.MethodHead, http.MethodPost},
+		AllowOrigins: []string{"*"},
+		AllowMethods: []string{http.MethodGet, http.MethodHead, http.MethodPut, http.MethodPatch, http.MethodPost, http.MethodDelete},
 	}))
+
 	echo.POST("/admin/register", controller.Register)
 	echo.POST("/admin/login", controller.Login)
 	echo.GET("/admin/user/:name", controller.GetUser, m.JWTTokenMiddleware())
