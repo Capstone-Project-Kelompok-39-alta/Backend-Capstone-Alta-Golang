@@ -18,7 +18,7 @@ import (
 // @version 2.0
 // @host backend-capstone-alta-golang-staging.up.railway.app
 // @BasePath
-// @schemes https http
+// @schemes http https
 // @securityDefinitions.apiKey JWT
 // @in header
 // @name Authorization

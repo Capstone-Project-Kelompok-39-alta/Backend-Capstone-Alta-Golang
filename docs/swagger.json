@@ -1,7 +1,7 @@
 {
     "schemes": [
-        "https",
-        "http"
+        "http",
+        "https"
     ],
     "swagger": "2.0",
     "info": {
@@ -197,6 +197,9 @@
                 "description": "UploadCsvController with upload file csv",
                 "consumes": [
                     "multipart/form-data"
+                ],
+                "produces": [
+                    "application/json"
                 ],
                 "tags": [
                     "Invoice"

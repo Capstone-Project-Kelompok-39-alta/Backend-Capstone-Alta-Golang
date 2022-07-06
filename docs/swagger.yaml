@@ -198,6 +198,8 @@ paths:
         name: file
         required: true
         type: file
+      produces:
+      - application/json
       responses:
         "201":
           description: Created
@@ -240,8 +242,8 @@ paths:
       tags:
       - Auth
 schemes:
-- https
 - http
+- https
 securityDefinitions:
   JWT:
     in: header

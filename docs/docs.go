@@ -202,6 +202,9 @@ const docTemplate = `{
                 "consumes": [
                     "multipart/form-data"
                 ],
+                "produces": [
+                    "application/json"
+                ],
                 "tags": [
                     "Invoice"
                 ],
@@ -393,7 +396,7 @@ var SwaggerInfo = &swag.Spec{
 	Version:          "2.0",
 	Host:             "backend-capstone-alta-golang-staging.up.railway.app",
 	BasePath:         "",
-	Schemes:          []string{"https", "http"},
+	Schemes:          []string{"http", "https"},
 	Title:            "Automatic Generate Invoice System API Documentation",
 	Description:      "This is Automatic Generate Invoice API Documentation",
 	InfoInstanceName: "swagger",
