@@ -5,6 +5,7 @@ import (
 	docs "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/docs"
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/database"
 	authAdmin "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/http/routes/admin/auth"
+	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/http/routes/admin/send_email"
 	uploadCsv "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/http/routes/admin/upload_csv"
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
@@ -28,8 +29,11 @@ func Server() *echo.Echo {
 
 	authAdmin.Routes(app, conf)
 	uploadCsv.Routes(app, conf)
+	send_email.Routes(app, conf)
+
 	app.Static(constant.STATIC_FILE_UPLOAD_CSV, constant.DIR_FILE_UPLOAD_CSV)
 	app.GET("/swagger/*", echoSwagger.WrapHandler)
+
 	app.Use(middleware.CORSWithConfig(middleware.CORSConfig{
 		AllowOrigins: []string{"*"},
 		AllowMethods: []string{http.MethodGet, http.MethodHead, http.MethodPut, http.MethodPatch, http.MethodPost, http.MethodDelete},
@@ -37,6 +41,7 @@ func Server() *echo.Echo {
 	app.Use(middleware.Recover())
 	app.Use(middleware.Logger())
 	app.Use(middleware.CORS())
+
 	docs.SwaggerInfo.Host = os.Getenv("APP_HOST")
 	return app
 }
