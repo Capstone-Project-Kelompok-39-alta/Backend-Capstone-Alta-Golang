@@ -33,7 +33,14 @@ func InitDB(conf Config) *gorm.DB {
 		panic(err)
 	}
 
-	er := DB.AutoMigrate(&entities2.Admin{}, &entities2.Invoice{})
+	er := DB.AutoMigrate(
+		&entities2.Admin{},
+		&entities2.Invoice{},
+		entities2.InvoicePaymentStatus{},
+		entities2.InvoiceItem{},
+		entities2.TransactionRecord{},
+		entities2.SendCustomer{},
+	)
 
 	if er != nil {
 		panic(er)
