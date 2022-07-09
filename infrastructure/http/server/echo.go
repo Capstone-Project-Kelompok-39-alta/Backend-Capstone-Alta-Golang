@@ -5,6 +5,7 @@ import (
 	docs "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/docs"
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/database"
 	authAdmin "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/http/routes/admin/auth"
+	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/http/routes/admin/invoice_payment_status"
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/http/routes/admin/payment_gateway"
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/http/routes/admin/send_email"
 	uploadCsv "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/http/routes/admin/upload_csv"
@@ -32,6 +33,7 @@ func Server() *echo.Echo {
 	uploadCsv.Routes(app, conf)
 	send_email.Routes(app, conf)
 	payment_gateway.Routes(app, conf)
+	invoice_payment_status.Routes(app, conf)
 
 	app.Static(constant.STATIC_FILE_UPLOAD_CSV, constant.DIR_FILE_UPLOAD_CSV)
 	app.GET("/swagger/*", echoSwagger.WrapHandler)
