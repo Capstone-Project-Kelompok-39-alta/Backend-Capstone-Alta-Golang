@@ -88,7 +88,7 @@ func (co *AuthController) Login(c echo.Context) error {
 
 	return c.JSON(http.StatusOK, map[string]interface{}{
 		"message": "success login admin",
-		"id":      adminLogin.ID,
+		"id":      adminLogin.IdPegawai,
 		"data":    token,
 	})
 }
@@ -100,7 +100,7 @@ func (co *AuthController) Login(c echo.Context) error {
 // @accept json
 // @Produce json
 // @Router /admin/user/{id} [get]
-// @Param name path string true "name"
+// @param id path int true "id"
 // @Success 200 {object} entities.Admin
 // @Failure 404 {object} entities.Admin
 // @Security JWT
@@ -130,7 +130,7 @@ func (co *AuthController) GetUser(c echo.Context) error {
 // @accept json
 // @Produce json
 // @Router /admin/user/{id} [put]
-// @Param data body entities.LoginAdmin true "required"
+// @param id path int true "id"
 // @Success 200 {object} entities.Admin
 // @Failure 500 {object} entities.Admin
 // @Security JWT

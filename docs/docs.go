@@ -721,9 +721,9 @@ const docTemplate = `{
                 "summary": "Get User With name",
                 "parameters": [
                     {
-                        "type": "string",
-                        "description": "name",
-                        "name": "name",
+                        "type": "integer",
+                        "description": "id",
+                        "name": "id",
                         "in": "path",
                         "required": true
                     }
@@ -762,13 +762,11 @@ const docTemplate = `{
                 "summary": "Update User Admin",
                 "parameters": [
                     {
-                        "description": "required",
-                        "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/entities.LoginAdmin"
-                        }
+                        "type": "integer",
+                        "description": "id",
+                        "name": "id",
+                        "in": "path",
+                        "required": true
                     }
                 ],
                 "responses": {

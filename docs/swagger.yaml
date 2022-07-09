@@ -590,11 +590,11 @@ paths:
       - application/json
       description: Admin can get by ID
       parameters:
-      - description: name
+      - description: id
         in: path
-        name: name
+        name: id
         required: true
-        type: string
+        type: integer
       produces:
       - application/json
       responses:
@@ -616,12 +616,11 @@ paths:
       - application/json
       description: Update User Admin
       parameters:
-      - description: required
-        in: body
-        name: data
+      - description: id
+        in: path
+        name: id
         required: true
-        schema:
-          $ref: '#/definitions/entities.LoginAdmin'
+        type: integer
       produces:
       - application/json
       responses:
