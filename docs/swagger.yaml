@@ -621,6 +621,12 @@ paths:
         name: id
         required: true
         type: integer
+      - description: required
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/entities.Admin'
       produces:
       - application/json
       responses:
