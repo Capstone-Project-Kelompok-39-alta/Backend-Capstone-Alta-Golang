@@ -529,6 +529,34 @@ paths:
       summary: Register User Admin
       tags:
       - Auth
+  /admin/send/email:
+    post:
+      consumes:
+      - application/json
+      description: Admin can send email to customer for their invoice
+      parameters:
+      - description: required
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/entities.SendCustomer'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/entities.SendCustomer'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/entities.SendCustomer'
+      security:
+      - JWT: []
+      summary: Send Email to Customer
+      tags:
+      - Send Customer
   /admin/upload_csv:
     post:
       consumes:
