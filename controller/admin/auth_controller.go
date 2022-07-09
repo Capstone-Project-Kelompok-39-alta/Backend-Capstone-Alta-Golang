@@ -129,7 +129,7 @@ func (co *AuthController) GetUser(c echo.Context) error {
 // @Tags Auth
 // @accept json
 // @Produce json
-// @Router /admin/login/{id} [put]
+// @Router /admin/user/{id} [put]
 // @Param data body entities.LoginAdmin true "required"
 // @Success 200 {object} entities.Admin
 // @Failure 500 {object} entities.Admin
