@@ -17,13 +17,56 @@ definitions:
     - name
     - password
     type: object
+  entities.CallbackInvoice:
+    properties:
+      amount:
+        type: integer
+      bank_code:
+        type: string
+      created:
+        type: string
+      currency:
+        type: string
+      description:
+        type: string
+      external_id:
+        type: string
+      id:
+        type: string
+      is_high:
+        type: boolean
+      merchant_name:
+        type: string
+      paid_amount:
+        type: integer
+      paid_at:
+        type: string
+      payer_email:
+        type: string
+      payment_channel:
+        type: string
+      payment_destination:
+        type: string
+      payment_method:
+        type: string
+      status:
+        type: string
+      updated:
+        type: string
+      user_id:
+        type: string
+    type: object
   entities.Invoice:
     properties:
+      buyer_address:
+        type: string
       buyer_email:
         type: string
       buyer_name:
         type: string
       buyer_phone:
+        type: string
+      description:
         type: string
       due_date:
         type: string
@@ -31,6 +74,10 @@ definitions:
         type: integer
       id_csv_file:
         type: integer
+      id_payment_status:
+        type: integer
+      issuer_address:
+        type: string
       issuer_email:
         type: string
       issuer_name:
@@ -41,6 +88,13 @@ definitions:
         type: integer
       total:
         type: integer
+    type: object
+  entities.InvoicePaymentStatus:
+    properties:
+      id:
+        type: integer
+      name:
+        type: string
     type: object
   entities.LoginAdmin:
     properties:
@@ -67,6 +121,28 @@ definitions:
     - id_pegawai
     - name
     - password
+    type: object
+  entities.SendCustomer:
+    properties:
+      body:
+        type: string
+      subject:
+        type: string
+      to:
+        type: string
+    type: object
+  entities.TransactionRecord:
+    properties:
+      created_at:
+        type: string
+      id_invoice:
+        type: integer
+      id_invoice_payment:
+        type: string
+      id_user_payment:
+        type: string
+      updated_at:
+        type: string
     type: object
 host: backend-capstone-alta-golang-staging.up.railway.app
 info:
@@ -96,6 +172,135 @@ paths:
       summary: Get All Invoice
       tags:
       - Invoice
+  /admin/invoice-payment-status:
+    get:
+      consumes:
+      - application/json
+      description: Admin can get all invoice payment status information
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entities.InvoicePaymentStatus'
+      security:
+      - JWT: []
+      summary: Get All Invoice Payment Status Information
+      tags:
+      - Invoice Payment Status
+    post:
+      consumes:
+      - application/json
+      description: Admin can create invoice payment for table invoice
+      parameters:
+      - description: required
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/entities.InvoicePaymentStatus'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/entities.InvoicePaymentStatus'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/entities.InvoicePaymentStatus'
+      security:
+      - JWT: []
+      summary: Create Invoice Payment Status
+      tags:
+      - Invoice Payment Status
+  /admin/invoice-payment-status/{id}:
+    delete:
+      consumes:
+      - application/json
+      description: Admin can delete invoice payment status information
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entities.InvoicePaymentStatus'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/entities.InvoicePaymentStatus'
+      security:
+      - JWT: []
+      summary: Delete Invoice Payment Status Information
+      tags:
+      - Invoice Payment Status
+    get:
+      consumes:
+      - application/json
+      description: Admin can get invoice payment status information by id
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entities.InvoicePaymentStatus'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/entities.InvoicePaymentStatus'
+      security:
+      - JWT: []
+      summary: Get Invoice Payment Status Information by Id
+      tags:
+      - Invoice Payment Status
+    put:
+      consumes:
+      - application/json
+      description: User can update invoice payment status information
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      - description: required
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/entities.InvoicePaymentStatus'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entities.InvoicePaymentStatus'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/entities.InvoicePaymentStatus'
+      security:
+      - JWT: []
+      summary: Update Invoice Payment Status Information
+      tags:
+      - Invoice Payment Status
   /admin/invoice/{id}:
     get:
       consumes:
@@ -157,6 +362,171 @@ paths:
       summary: Login User Admin
       tags:
       - Auth
+  /admin/login/{id}:
+    put:
+      consumes:
+      - application/json
+      description: Update User Admin
+      parameters:
+      - description: required
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/entities.LoginAdmin'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entities.Admin'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/entities.Admin'
+      security:
+      - JWT: []
+      summary: Update User Admin
+      tags:
+      - Auth
+  /admin/payment/xendit/invoice:
+    get:
+      consumes:
+      - application/json
+      description: Admin can get all xendit payment invoice
+      parameters:
+      - description: required
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/entities.TransactionRecord'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entities.TransactionRecord'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/entities.TransactionRecord'
+      security:
+      - JWT: []
+      summary: Get All Xendit Payment Invoice
+      tags:
+      - InvoiceTransaction
+  /admin/payment/xendit/invoice/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Admin can get xendit payment invoice by id
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entities.TransactionRecord'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/entities.TransactionRecord'
+      security:
+      - JWT: []
+      summary: Get Xendit Payment Invoice By ID
+      tags:
+      - InvoiceTransaction
+    post:
+      consumes:
+      - application/json
+      description: Admin can create payment invoice using xendit
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            $ref: '#/definitions/entities.TransactionRecord'
+        "500":
+          description: Internal Server Error
+          schema:
+            $ref: '#/definitions/entities.TransactionRecord'
+      security:
+      - JWT: []
+      summary: Create Payment Invoice Using Xendit
+      tags:
+      - InvoiceTransaction
+  /admin/payment/xendit/invoice/callback:
+    post:
+      consumes:
+      - application/json
+      description: Xendit can callback by this route if customer is have been paying
+        or the invoice is expired
+      parameters:
+      - description: required
+        in: body
+        name: data
+        required: true
+        schema:
+          $ref: '#/definitions/entities.CallbackInvoice'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entities.CallbackInvoice'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/entities.CallbackInvoice'
+      security:
+      - JWT: []
+      summary: Xendit can callback by using this route
+      tags:
+      - CallbackInvoice
+  /admin/payment/xendit/invoice/expire/{id}:
+    get:
+      consumes:
+      - application/json
+      description: Admin can expired xendit payment invoice
+      parameters:
+      - description: id
+        in: path
+        name: id
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/entities.TransactionRecord'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/entities.TransactionRecord'
+      security:
+      - JWT: []
+      summary: Expired Xendit Payment Invoice
+      tags:
+      - InvoiceTransaction
   /admin/register:
     post:
       consumes:
@@ -214,11 +584,11 @@ paths:
       summary: Admin can Upload Csv
       tags:
       - Invoice
-  /admin/user/{name}:
+  /admin/user/{id}:
     get:
       consumes:
       - application/json
-      description: Admin can get the user name
+      description: Admin can get by ID
       parameters:
       - description: name
         in: path

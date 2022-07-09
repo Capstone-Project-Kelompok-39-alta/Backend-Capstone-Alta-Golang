@@ -18,7 +18,7 @@ type SendCustomerController struct {
 // @accept json
 // @Produce json
 // @Route /admin/send/email [post]
-// @param data body entities.SendCustomer
+// @Param data body entities.SendCustomer true "required"
 // @Success 201 {object} entities.SendCustomer
 // @Failure 500 {object} entities.SendCustomer
 // @Security JWT
