@@ -12,7 +12,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	echoSwagger "github.com/swaggo/echo-swagger"
-	"log"
+	"golang.org/x/crypto/acme/autocert"
 	"net/http"
 	"os"
 )
@@ -49,8 +49,10 @@ func Server() *echo.Echo {
 
 	docs.SwaggerInfo.Host = os.Getenv("APP_HOST")
 
-	if err := app.StartTLS(":8080", "infrastructure/certificate/certificate.crt", "infrastructure/certificate/private.key"); err != http.ErrServerClosed {
-		log.Fatal(err)
+	app.AutoTLSManager.Cache = autocert.DirCache("/var/www/.cache")
+	err := app.StartAutoTLS(":443")
+	if err != nil {
+		return nil
 	}
 	return app
 }

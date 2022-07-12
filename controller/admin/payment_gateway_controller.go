@@ -74,7 +74,6 @@ func (co *PaymentGatewayController) GetXenditPaymentInvoiceController(c echo.Con
 // @accept json
 // @Produce json
 // @Router /admin/payment/xendit/invoice [get]
-// @param data body entities.TransactionRecord true "required"
 // @Success 200 {object} entities.TransactionRecord
 // @Failure 404 {object} entities.TransactionRecord
 // @Security JWT
