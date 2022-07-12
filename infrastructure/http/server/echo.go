@@ -12,6 +12,7 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	echoSwagger "github.com/swaggo/echo-swagger"
+	"log"
 	"net/http"
 	"os"
 )
@@ -47,5 +48,9 @@ func Server() *echo.Echo {
 	app.Use(middleware.CORS())
 
 	docs.SwaggerInfo.Host = os.Getenv("APP_HOST")
+
+	if err := app.StartTLS(":8080", "infrastructure/certificate/certificate.crt", "infrastructure/certificate/private.key"); err != http.ErrServerClosed {
+		log.Fatal(err)
+	}
 	return app
 }
