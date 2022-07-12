@@ -50,7 +50,7 @@ func Server() *echo.Echo {
 	docs.SwaggerInfo.Host = os.Getenv("APP_HOST")
 
 	app.AutoTLSManager.Cache = autocert.DirCache("/var/www/.cache")
-	err := app.StartAutoTLS(":443")
+	err := app.StartAutoTLS(":8080")
 	if err != nil {
 		return nil
 	}
