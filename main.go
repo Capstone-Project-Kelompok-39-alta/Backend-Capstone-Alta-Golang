@@ -6,7 +6,7 @@ import (
 
 func main() {
 	app := server.Server()
-	err := app.Start(":8080")
+	err := app.Start(":443")
 
 	if err != nil {
 		panic(err)
