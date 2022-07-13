@@ -25,9 +25,9 @@ func NewSendCustomerService(repo domains.SendCustomerRepository, c database.Conf
 func (s *svcSendCustomer) SendEmailService(message entities.SendCustomer) error {
 	server := "smtp-mail.outlook.com"
 	port := 587
-	user := "generateinvoice1@outlook.com"
+	user := "rolandbrilianto@outlook.com"
 	from := user
-	pass := "Smanurung234"
+	pass := "Kipasangin_1"
 	dest := message.To
 
 	auth := lib.LoginAuth(user, pass)
