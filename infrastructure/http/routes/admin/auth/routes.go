@@ -27,6 +27,6 @@ func Routes(echo *echo.Echo, conf database.Config) {
 
 	authRoute.POST("/register", controller.Register)
 	authRoute.POST("/login", controller.Login)
-	authRoute.GET("/user/:id", controller.GetUser, m.JWTTokenMiddleware())
-	authRoute.PUT("/user/:id", controller.UpdateUser, m.JWTTokenMiddleware())
+	authRoute.GET("/user/:id_pegawai", controller.GetUser, m.JWTTokenMiddleware())
+	authRoute.PUT("/user/:id_pegawai", controller.UpdateUser, m.JWTTokenMiddleware())
 }

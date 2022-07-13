@@ -368,17 +368,6 @@ const docTemplate = `{
                     "InvoiceTransaction"
                 ],
                 "summary": "Get All Xendit Payment Invoice",
-                "parameters": [
-                    {
-                        "description": "required",
-                        "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/entities.TransactionRecord"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -701,7 +690,7 @@ const docTemplate = `{
                 }
             }
         },
-        "/admin/user/{id}": {
+        "/admin/user/{id_pegawai}": {
             "get": {
                 "security": [
                     {
@@ -722,8 +711,8 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "integer",
-                        "description": "id",
-                        "name": "id",
+                        "description": "id_pegawai",
+                        "name": "id_pegawai",
                         "in": "path",
                         "required": true
                     }
@@ -763,8 +752,8 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "integer",
-                        "description": "id",
-                        "name": "id",
+                        "description": "id_pegawai",
+                        "name": "id_pegawai",
                         "in": "path",
                         "required": true
                     },
@@ -1029,7 +1018,7 @@ var SwaggerInfo = &swag.Spec{
 	Version:          "2.0",
 	Host:             "backend-capstone-alta-golang-staging.up.railway.app",
 	BasePath:         "",
-	Schemes:          []string{"http", "https"},
+	Schemes:          []string{"https", "http"},
 	Title:            "Automatic Generate Invoice System API Documentation",
 	Description:      "This is Automatic Generate Invoice API Documentation",
 	InfoInstanceName: "swagger",

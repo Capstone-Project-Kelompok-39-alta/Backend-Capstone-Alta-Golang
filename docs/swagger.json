@@ -1,7 +1,7 @@
 {
     "schemes": [
-        "http",
-        "https"
+        "https",
+        "http"
     ],
     "swagger": "2.0",
     "info": {
@@ -364,17 +364,6 @@
                     "InvoiceTransaction"
                 ],
                 "summary": "Get All Xendit Payment Invoice",
-                "parameters": [
-                    {
-                        "description": "required",
-                        "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/entities.TransactionRecord"
-                        }
-                    }
-                ],
                 "responses": {
                     "200": {
                         "description": "OK",
@@ -697,7 +686,7 @@
                 }
             }
         },
-        "/admin/user/{id}": {
+        "/admin/user/{id_pegawai}": {
             "get": {
                 "security": [
                     {
@@ -718,8 +707,8 @@
                 "parameters": [
                     {
                         "type": "integer",
-                        "description": "id",
-                        "name": "id",
+                        "description": "id_pegawai",
+                        "name": "id_pegawai",
                         "in": "path",
                         "required": true
                     }
@@ -759,8 +748,8 @@
                 "parameters": [
                     {
                         "type": "integer",
-                        "description": "id",
-                        "name": "id",
+                        "description": "id_pegawai",
+                        "name": "id_pegawai",
                         "in": "path",
                         "required": true
                     },
