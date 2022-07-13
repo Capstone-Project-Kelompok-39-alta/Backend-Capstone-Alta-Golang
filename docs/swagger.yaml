@@ -367,13 +367,6 @@ paths:
       consumes:
       - application/json
       description: Admin can get all xendit payment invoice
-      parameters:
-      - description: required
-        in: body
-        name: data
-        required: true
-        schema:
-          $ref: '#/definitions/entities.TransactionRecord'
       produces:
       - application/json
       responses:
@@ -584,15 +577,15 @@ paths:
       summary: Admin can Upload Csv
       tags:
       - Invoice
-  /admin/user/{id}:
+  /admin/user/{id_pegawai}:
     get:
       consumes:
       - application/json
       description: Admin can get by ID
       parameters:
-      - description: id
+      - description: id_pegawai
         in: path
-        name: id
+        name: id_pegawai
         required: true
         type: integer
       produces:
@@ -611,6 +604,7 @@ paths:
       summary: Get User With name
       tags:
       - Auth
+  /admin/user/{id}:
     put:
       consumes:
       - application/json
@@ -644,8 +638,8 @@ paths:
       tags:
       - Auth
 schemes:
-- http
 - https
+- http
 securityDefinitions:
   JWT:
     in: header

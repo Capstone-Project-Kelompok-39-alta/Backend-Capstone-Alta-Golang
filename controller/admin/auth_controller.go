@@ -99,14 +99,14 @@ func (co *AuthController) Login(c echo.Context) error {
 // @Tags Auth
 // @accept json
 // @Produce json
-// @Router /admin/user/{id} [get]
-// @param id path int true "id"
+// @Router /admin/user/{id_pegawai} [get]
+// @param id_pegawai path int true "id_pegawai"
 // @Success 200 {object} entities.Admin
 // @Failure 404 {object} entities.Admin
 // @Security JWT
 func (co *AuthController) GetUser(c echo.Context) error {
-	id := c.Param("id")
-	intID, _ := strconv.Atoi(id)
+	id_pegawai := c.Param("id_pegawai")
+	intID, _ := strconv.Atoi(id_pegawai)
 
 	admins, er := co.Svc.GetUserService(intID)
 
@@ -137,7 +137,7 @@ func (co *AuthController) GetUser(c echo.Context) error {
 // @Security JWT
 func (co *AuthController) UpdateUser(c echo.Context) error {
 	var admin entities.Admin
-	id, _ := strconv.Atoi(c.Param("id"))
+	id_pegawai, _ := strconv.Atoi(c.Param("id_pegawai"))
 
 	if err := c.Bind(&admin); err != nil {
 		return c.JSON(http.StatusBadRequest, map[string]interface{}{
@@ -145,7 +145,7 @@ func (co *AuthController) UpdateUser(c echo.Context) error {
 		})
 	}
 
-	auth, er := co.Svc.UpdateUserService(id)
+	auth, er := co.Svc.UpdateUserService(id_pegawai)
 
 	if er != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
