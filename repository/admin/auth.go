@@ -29,12 +29,12 @@ func (r *repositoryAuth) LoginRepository(id_Pegawai int) (credential entities.Ad
 
 func (r *repositoryAuth) GetUserRepository(id int) (entities.Admin, error) {
 	var admin entities.Admin
-	r.DB.Where("id = ? ", id).Preload("admin").Find(&admin)
+	r.DB.Where("id_pegawai = ? ", id).Preload("admin").Find(&admin)
 	return admin, nil
 }
 
 func (r *repositoryAuth) UpdateUserRepository(id int) (entities.Admin, error) {
 	var admin entities.Admin
-	r.DB.Where("id = ? ", id).Preload("admin").Find(&admin)
+	r.DB.Where("id_pegawai = ? ", id).Preload("admin").Find(&admin)
 	return admin, nil
 }

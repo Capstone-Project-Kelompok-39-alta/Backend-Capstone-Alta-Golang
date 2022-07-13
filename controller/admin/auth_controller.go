@@ -87,9 +87,9 @@ func (co *AuthController) Login(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"message": "success login admin",
-		"id":      adminLogin.IdPegawai,
-		"data":    token,
+		"message":    "success login admin",
+		"id_pegawai": adminLogin.IdPegawai,
+		"data":       token,
 	})
 }
 
