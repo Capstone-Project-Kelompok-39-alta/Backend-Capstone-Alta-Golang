@@ -731,9 +731,7 @@ const docTemplate = `{
                         }
                     }
                 }
-            }
-        },
-        "/admin/user/{id}": {
+            },
             "put": {
                 "security": [
                     {
@@ -754,8 +752,8 @@ const docTemplate = `{
                 "parameters": [
                     {
                         "type": "integer",
-                        "description": "id",
-                        "name": "id",
+                        "description": "id_pegawai",
+                        "name": "id_pegawai",
                         "in": "path",
                         "required": true
                     },

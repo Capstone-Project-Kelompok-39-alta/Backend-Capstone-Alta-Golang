@@ -604,15 +604,14 @@ paths:
       summary: Get User With name
       tags:
       - Auth
-  /admin/user/{id}:
     put:
       consumes:
       - application/json
       description: Update User Admin
       parameters:
-      - description: id
+      - description: id_pegawai
         in: path
-        name: id
+        name: id_pegawai
         required: true
         type: integer
       - description: required
