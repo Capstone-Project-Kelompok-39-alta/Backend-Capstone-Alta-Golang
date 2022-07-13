@@ -118,7 +118,7 @@ func (co *AuthController) GetUser(c echo.Context) error {
 	}
 
 	return c.JSON(http.StatusOK, map[string]interface{}{
-		"message": "success get user admin by name",
+		"message": "success get user admin by id_pegawai",
 		"data":    admins,
 	})
 }
