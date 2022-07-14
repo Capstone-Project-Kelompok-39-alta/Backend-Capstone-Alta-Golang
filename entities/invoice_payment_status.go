@@ -1,8 +1,8 @@
 package entities
 
 type InvoicePaymentStatus struct {
-	ID   int    `json:"id" form:"id"`
-	Name string `json:"name" form:"id"`
+	ID   int    `json:"id"`
+	Name string `json:"name"`
 }
 
 func (*InvoicePaymentStatus) TableName() string {
