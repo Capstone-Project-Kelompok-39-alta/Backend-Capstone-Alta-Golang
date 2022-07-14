@@ -785,7 +785,7 @@ const docTemplate = `{
         },
         "/user/login": {
             "post": {
-                "description": "Login User Admin",
+                "description": "Login User",
                 "consumes": [
                     "application/json"
                 ],
@@ -793,9 +793,9 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Auth"
+                    "Auth User"
                 ],
-                "summary": "Login User Admin",
+                "summary": "Login User",
                 "parameters": [
                     {
                         "description": "required",
@@ -845,9 +845,9 @@ const docTemplate = `{
                     "application/json"
                 ],
                 "tags": [
-                    "Auth"
+                    "Auth User"
                 ],
-                "summary": "Register User Admin",
+                "summary": "Register User",
                 "parameters": [
                     {
                         "description": "required",

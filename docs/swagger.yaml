@@ -678,7 +678,7 @@ paths:
     post:
       consumes:
       - application/json
-      description: Login User Admin
+      description: Login User
       parameters:
       - description: required
         in: body
@@ -705,9 +705,9 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/entities.User'
-      summary: Login User Admin
+      summary: Login User
       tags:
-      - Auth
+      - Auth User
   /user/register:
     post:
       consumes:
@@ -735,9 +735,9 @@ paths:
           description: Internal Server Error
           schema:
             $ref: '#/definitions/entities.User'
-      summary: Register User Admin
+      summary: Register User
       tags:
-      - Auth
+      - Auth User
 schemes:
 - https
 - http
