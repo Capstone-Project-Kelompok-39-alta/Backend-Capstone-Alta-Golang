@@ -1,7 +1,6 @@
 package server
 
 import (
-	"crypto/tls"
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/constant"
 	docs "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/docs"
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/database"
@@ -13,8 +12,6 @@ import (
 	"github.com/labstack/echo/v4"
 	"github.com/labstack/echo/v4/middleware"
 	echoSwagger "github.com/swaggo/echo-swagger"
-	"golang.org/x/crypto/acme"
-	"golang.org/x/crypto/acme/autocert"
 	"net/http"
 	"os"
 )
@@ -51,22 +48,5 @@ func Server() *echo.Echo {
 
 	docs.SwaggerInfo.Host = os.Getenv("APP_HOST")
 
-	autoTLSManager := autocert.Manager{
-		Prompt: autocert.AcceptTOS,
-		Cache:  autocert.DirCache("/var/www/.cache"),
-	}
-
-	s := http.Server{
-		Addr:    ":8080",
-		Handler: app,
-		TLSConfig: &tls.Config{
-			GetCertificate: autoTLSManager.GetCertificate,
-			NextProtos:     []string{acme.ALPNProto},
-		},
-	}
-
-	if err := s.ListenAndServeTLS("", ""); err != http.ErrServerClosed {
-		app.Logger.Fatal(err)
-	}
 	return app
 }
