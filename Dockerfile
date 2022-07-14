@@ -1,4 +1,4 @@
-FROM golang:1.17.8
+FROM golang:1.18
 
 WORKDIR /go/Backend-Capstone-Alta-Golang
 COPY go.mod go.sum ./

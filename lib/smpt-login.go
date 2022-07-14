@@ -6,8 +6,7 @@ import (
 )
 
 type loginAuth struct {
-	username string
-	password string
+	username, password string
 }
 
 func (l *loginAuth) Start(server *smtp.ServerInfo) (string, []byte, error) {
