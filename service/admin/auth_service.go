@@ -27,16 +27,12 @@ func (s *svcAuth) RegisterService(admin entities.Admin) error {
 	password, _ := bcrypt.GenerateFromPassword([]byte(admin.Password), bcrypt.DefaultCost)
 	admin.Password = string(password)
 
-	if (admin.IdPegawai != idpegawai) || (admin.IdPegawai < 8) {
+	if (admin.IdPegawai != idpegawai) || (admin.IdPegawai <= 8) {
 		return errors.New("your id_pegawai error to created")
 	}
 
-	if admin.Name == "" {
+	if admin.Name != "" {
 		return errors.New("your name error to created")
-	}
-
-	if admin.Password == "" {
-		return errors.New("your password error to created")
 	}
 
 	return s.repo.RegisterRepository(admin)
