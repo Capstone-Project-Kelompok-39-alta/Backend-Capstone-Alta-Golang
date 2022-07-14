@@ -40,6 +40,7 @@ func InitDB(conf Config) *gorm.DB {
 		entities2.InvoiceItem{},
 		entities2.TransactionRecord{},
 		entities2.SendCustomer{},
+		entities2.User{},
 	)
 
 	if er != nil {

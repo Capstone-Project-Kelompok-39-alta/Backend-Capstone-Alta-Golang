@@ -35,6 +35,6 @@ func (r *repositoryAuth) GetUserRepository(id_pegawai int) (entities.Admin, erro
 
 func (r *repositoryAuth) UpdateUserRepository(id_pegawai int) (entities.Admin, error) {
 	var admin entities.Admin
-	r.DB.Where("id_pegawai = ? ", id_pegawai).Preload("admin").Find(&admin)
+	r.DB.Where("id_pegawai = ? ", id_pegawai).Preload("admin").Find(&admin).Updates(&admin)
 	return admin, nil
 }

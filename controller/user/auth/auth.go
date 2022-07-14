@@ -13,9 +13,9 @@ type ControllerUser struct {
 }
 
 // RegisterUser godoc
-// @Summary Register User Admin
+// @Summary Register User
 // @Description Create User Admin
-// @Tags Auth
+// @Tags Auth User
 // @accept json
 // @Produce json
 // @Router /user/register [post]
@@ -50,9 +50,9 @@ func (co *ControllerUser) RegisterUser(c echo.Context) error {
 }
 
 // LoginUser godoc
-// @Summary Login User Admin
-// @Description Login User Admin
-// @Tags Auth
+// @Summary Login User
+// @Description Login User
+// @Tags Auth User
 // @accept json
 // @Produce json
 // @Router /user/login [post]

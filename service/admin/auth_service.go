@@ -64,5 +64,15 @@ func (s *svcAuth) GetUserService(id_pegawai int) (entities.Admin, error) {
 }
 
 func (s *svcAuth) UpdateUserService(id_pegawai int) (entities.Admin, error) {
+	var admin entities.Admin
+	passwords := admin.Password
+	password, _ := bcrypt.GenerateFromPassword([]byte(admin.Password), bcrypt.DefaultCost)
+	admin.Password = string(password)
+
+	er := bcrypt.CompareHashAndPassword([]byte(admin.Password), []byte(passwords))
+	if er != nil {
+		return entities.Admin{}, er
+	}
+
 	return s.repo.UpdateUserRepository(id_pegawai)
 }
