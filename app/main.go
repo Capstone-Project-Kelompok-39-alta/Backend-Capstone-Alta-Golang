@@ -2,6 +2,7 @@ package main
 
 import "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/http/server"
 
+//MAIN
 func main() {
 	app := server.Server()
 	err := app.Start(":8080")
