@@ -32,7 +32,7 @@ func (co *AuthController) Register(c echo.Context) error {
 		})
 	}
 
-	return c.JSON(http.StatusOK, map[string]interface{}{
+	return c.JSON(http.StatusCreated, map[string]interface{}{
 		"message": "success register user",
 		"data":    user,
 	})
