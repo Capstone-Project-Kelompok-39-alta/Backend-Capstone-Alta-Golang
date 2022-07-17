@@ -37,7 +37,7 @@ func (co *AuthController) Register(c echo.Context) error {
 	er := co.Svc.RegisterService(admins)
 
 	if er != nil {
-		return c.JSON(http.StatusBadRequest, map[string]interface{}{
+		return c.JSON(http.StatusUnauthorized, map[string]interface{}{
 			"message": "user UnRegistered",
 			"data":    er.Error(),
 		})
@@ -120,42 +120,5 @@ func (co *AuthController) GetUser(c echo.Context) error {
 	return c.JSON(http.StatusOK, map[string]interface{}{
 		"message": "success get user admin by id_pegawai",
 		"data":    admins,
-	})
-}
-
-// UpdateUser godoc
-// @Summary Update User Admin
-// @Description Update User Admin
-// @Tags Auth
-// @accept json
-// @Produce json
-// @Router /admin/user/{id_pegawai} [put]
-// @param id_pegawai path int true "id_pegawai"
-// @param data body entities.Admin true "required"
-// @Success 200 {object} entities.Admin
-// @Failure 500 {object} entities.Admin
-// @Security JWT
-func (co *AuthController) UpdateUser(c echo.Context) error {
-	var admin entities.Admin
-	id_pegawai, _ := strconv.Atoi(c.Param("id_pegawai"))
-
-	if err := c.Bind(&admin); err != nil {
-		return c.JSON(http.StatusBadRequest, map[string]interface{}{
-			"message": "error to update the admin",
-		})
-	}
-
-	auth, er := co.Svc.UpdateUserService(id_pegawai)
-
-	if er != nil {
-		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
-			"message": "error to update the admin",
-			"data":    er.Error(),
-		})
-	}
-
-	return c.JSON(http.StatusOK, map[string]interface{}{
-		"message": "success edited the admin",
-		"data":    auth,
 	})
 }

@@ -6,7 +6,6 @@ import (
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/entities"
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/database"
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/lib"
-	"log"
 	"net/smtp"
 )
 
@@ -43,7 +42,7 @@ func (s *svcSendCustomer) SendEmailService(message entities.SendCustomer) error 
 
 	err := smtp.SendMail(endpoint, auth, from, to, messages)
 	if err != nil {
-		log.Fatal(err)
+		fmt.Println("this is error guys :", err)
 	}
 	return s.repo.SendEmail(message)
 }
