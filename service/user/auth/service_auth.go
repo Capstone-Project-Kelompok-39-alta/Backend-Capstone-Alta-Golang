@@ -12,10 +12,10 @@ import (
 
 type svcAuth struct {
 	c    database.Config
-	repo domains.AuthRepository
+	repo domains.AuthRepositoryUser
 }
 
-func NewAuthService(repo domains.AuthRepository, c database.Config) *svcAuth {
+func NewAuthService(repo domains.AuthRepositoryUser, c database.Config) *svcAuth {
 	return &svcAuth{
 		c:    c,
 		repo: repo,

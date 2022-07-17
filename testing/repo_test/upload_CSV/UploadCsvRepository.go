@@ -3,8 +3,6 @@
 package upload_CSV
 
 import (
-	testing "testing"
-
 	mock "github.com/stretchr/testify/mock"
 )
 
@@ -16,14 +14,4 @@ type UploadCsvRepository struct {
 // UploadCsv provides a mock function with given fields: File_csv
 func (_m *UploadCsvRepository) UploadCsv(File_csv string) {
 	_m.Called(File_csv)
-}
-
-// NewUploadCsvRepository creates a new instance of UploadCsvRepository. It also registers the testing.TB interface on the mock and a cleanup function to assert the mocks expectations.
-func NewUploadCsvRepository(t testing.TB) *UploadCsvRepository {
-	mock := &UploadCsvRepository{}
-	mock.Mock.Test(t)
-
-	t.Cleanup(func() { mock.AssertExpectations(t) })
-
-	return mock
 }

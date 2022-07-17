@@ -129,6 +129,42 @@ func TestGetUser(t *testing.T) {
 	}
 
 	t.Run("StatusOK", func(t *testing.T) {
-		authService.On("GetUserService")
+		authService.On("GetUserService", mock.Anything).Return(adminData, nil).Once()
+		authService, err := authService.GetUserService(int(adminData.IdPegawai))
+		svc.On("GetUserService", mock.Anything).Return(adminData, nil).Once()
+		e := echo.New()
+		r := httptest.NewRequest("GET", "/admin/user/:id_pegawai", nil)
+		w := httptest.NewRecorder()
+		echoContext := e.NewContext(r, w)
+
+		er := AuthController.GetUser(echoContext)
+
+		if er != nil {
+			return
+		}
+
+		assert.Equal(t, authService, adminData)
+		assert.Equal(t, 200, w.Result().StatusCode)
+		assert.NoError(t, err)
+	})
+
+	t.Run("StatusNotFound", func(t *testing.T) {
+		authService.On("GetUserService", mock.Anything).Return(adminData, errors.New("error to get admin by id_pegawai")).Once()
+		authService, err := authService.GetUserService(int(adminData.IdPegawai))
+		svc.On("GetUserService", mock.Anything).Return(adminData, errors.New("error to get admin by id_pegawai")).Once()
+		e := echo.New()
+		r := httptest.NewRequest("GET", "/admin/user/:id_pegawai", io.Reader(strings.NewReader(`{"Status" : "Not Found"}`)))
+		w := httptest.NewRecorder()
+		echoContext := e.NewContext(r, w)
+
+		er := AuthController.GetUser(echoContext)
+
+		if er != nil {
+			return
+		}
+
+		assert.Equal(t, authService, adminData)
+		assert.Equal(t, 404, w.Result().StatusCode)
+		assert.Error(t, err)
 	})
 }

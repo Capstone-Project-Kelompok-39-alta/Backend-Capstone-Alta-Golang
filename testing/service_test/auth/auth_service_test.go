@@ -58,3 +58,29 @@ func TestLoginService(t *testing.T) {
 		assert.Equal(t, login, "Unauthorized")
 	})
 }
+
+func TestGetUserService(t *testing.T) {
+	adminService := new(AuthService)
+	adminData := entities.Admin{
+		Name:      "Name Testing",
+		IdPegawai: 12345678,
+		Email:     "emailTesting@gmail.com",
+		Password:  "Password Testing",
+	}
+
+	t.Run("Success", func(t *testing.T) {
+		adminService.On("GetUserService", mock.Anything).Return(adminData, nil).Once()
+		adminService := domains2.AuthService(adminService)
+		adminUserService, err := adminService.GetUserService(int(adminData.IdPegawai))
+		assert.Equal(t, adminUserService, adminData)
+		assert.NoError(t, err)
+	})
+
+	t.Run("Success", func(t *testing.T) {
+		adminService.On("GetUserService", mock.Anything).Return(adminData, errors.New("error to get admin by id_pegawai")).Once()
+		adminService := domains2.AuthService(adminService)
+		adminUserService, err := adminService.GetUserService(int(adminData.IdPegawai))
+		assert.Equal(t, adminUserService, adminData)
+		assert.Error(t, err)
+	})
+}
