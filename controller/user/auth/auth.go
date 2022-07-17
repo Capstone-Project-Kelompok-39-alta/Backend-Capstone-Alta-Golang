@@ -9,7 +9,7 @@ import (
 )
 
 type ControllerUser struct {
-	Svc domains.AuthService
+	Svc domains.AuthServiceUser
 }
 
 // RegisterUser godoc
