@@ -731,56 +731,6 @@ const docTemplate = `{
                         }
                     }
                 }
-            },
-            "put": {
-                "security": [
-                    {
-                        "JWT": []
-                    }
-                ],
-                "description": "Update User Admin",
-                "consumes": [
-                    "application/json"
-                ],
-                "produces": [
-                    "application/json"
-                ],
-                "tags": [
-                    "Auth"
-                ],
-                "summary": "Update User Admin",
-                "parameters": [
-                    {
-                        "type": "integer",
-                        "description": "id_pegawai",
-                        "name": "id_pegawai",
-                        "in": "path",
-                        "required": true
-                    },
-                    {
-                        "description": "required",
-                        "name": "data",
-                        "in": "body",
-                        "required": true,
-                        "schema": {
-                            "$ref": "#/definitions/entities.Admin"
-                        }
-                    }
-                ],
-                "responses": {
-                    "200": {
-                        "description": "OK",
-                        "schema": {
-                            "$ref": "#/definitions/entities.Admin"
-                        }
-                    },
-                    "500": {
-                        "description": "Internal Server Error",
-                        "schema": {
-                            "$ref": "#/definitions/entities.Admin"
-                        }
-                    }
-                }
             }
         },
         "/user/login": {
