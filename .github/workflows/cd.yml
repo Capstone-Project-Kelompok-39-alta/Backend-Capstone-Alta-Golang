@@ -32,8 +32,8 @@ jobs:
           port: ${{ secrets.PORT }}
           key: ${{ secrets.KEY }}
           script: |
-            docker login -u sautmanurung234 -p X123stnd234
             docker stop capstone-project
             docker container rm capstone-project
+            docker images -a -q | xargs docker rmi -f
             docker pull sautmanurung234/capstone-project:v1
             docker run -e -p 80:8080 --name capstone-project --detach sautmanurung234/capstone-project:v1
