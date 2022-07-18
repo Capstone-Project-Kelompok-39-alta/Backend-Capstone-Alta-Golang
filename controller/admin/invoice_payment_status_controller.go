@@ -26,12 +26,10 @@ type InvoicePaymentStatusController struct {
 func (co *InvoicePaymentStatusController) CreateInvoicePaymentStatusController(c echo.Context) error {
 	invoicePaymentStatus := entities.InvoicePaymentStatus{}
 	err := c.Bind(&invoicePaymentStatus)
-	if err != nil {
-		return err
-	}
 
-	er := co.Svc.CreateInvoicePaymentStatusService(invoicePaymentStatus)
-	if er != nil {
+	invoicesPaymentStatus := co.Svc.CreateInvoicePaymentStatusService(invoicePaymentStatus)
+
+	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"message": "internal server error",
 		})
@@ -39,7 +37,7 @@ func (co *InvoicePaymentStatusController) CreateInvoicePaymentStatusController(c
 
 	return c.JSON(http.StatusCreated, map[string]interface{}{
 		"message":                "success",
-		"invoice payment status": invoicePaymentStatus,
+		"invoice payment status": invoicesPaymentStatus,
 	})
 }
 
@@ -102,20 +100,19 @@ func (co *InvoicePaymentStatusController) UpdateInvoicePaymentStatusController(c
 
 	invoicePaymentStatus := entities.InvoicePaymentStatus{}
 	err := c.Bind(&invoicePaymentStatus)
+
+	updateInvoicesPayment := co.Svc.UpdateInvoicePaymentStatusByIDService(intID, invoicePaymentStatus)
 	if err != nil {
-		return err
-	}
-	er := co.Svc.UpdateInvoicePaymentStatusByIDService(intID, invoicePaymentStatus)
-	if er != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"message": "id can't change in database",
+			"Data":    err.Error(),
 		})
 	}
 
 	return c.JSON(http.StatusOK, map[string]interface{}{
 		"message":                "edited the data",
 		"id":                     intID,
-		"invoice payment status": invoicePaymentStatus,
+		"invoice payment status": updateInvoicesPayment,
 	})
 }
 

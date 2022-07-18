@@ -227,7 +227,7 @@ func TestDeleteInvoicePaymentStatusController(t *testing.T) {
 		err := invoicePaymentStatus.DeleteInvoicePaymentStatusByIDService(int(invoicePaymentStatusData.ID))
 		svc.On("DeleteInvoicePaymentStatusByIDService", mock.Anything).Return(errors.New("error to make unit testing")).Once()
 		e := echo.New()
-		r := httptest.NewRequest("DELETE", "/admin/invoice-payment-status/:id", io.Reader(strings.NewReader(`{"Status" : "Internal Server Error"}`)))
+		r := httptest.NewRequest("DELETE", "/admin/invoice-payment-status/:id", nil)
 		w := httptest.NewRecorder()
 		echoContext := e.NewContext(r, w)
 
