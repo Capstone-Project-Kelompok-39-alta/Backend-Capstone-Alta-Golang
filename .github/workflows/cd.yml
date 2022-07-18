@@ -2,7 +2,7 @@ name: Pushing To DockerHub Repository
 on:
   pull_request:
     branches:
-      - staging
+      - "staging"
   push:
     branches:
       - main
@@ -33,7 +33,7 @@ jobs:
           key: ${{ secrets.KEY }}
           script: |
             docker login -u sautmanurung234 -p X123stnd234
-            docker stop mini-project
-            docker container rm mini-project
+            docker stop capstone-project
+            docker container rm capstone-project
             docker pull sautmanurung234/capstone-project:v1
             docker run -e -p 80:8080 --name capstone-project --detach sautmanurung234/capstone-project:v1
