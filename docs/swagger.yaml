@@ -642,38 +642,6 @@ paths:
       summary: Get User With name
       tags:
       - Auth
-    put:
-      consumes:
-      - application/json
-      description: Update User Admin
-      parameters:
-      - description: id_pegawai
-        in: path
-        name: id_pegawai
-        required: true
-        type: integer
-      - description: required
-        in: body
-        name: data
-        required: true
-        schema:
-          $ref: '#/definitions/entities.Admin'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/entities.Admin'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/entities.Admin'
-      security:
-      - JWT: []
-      summary: Update User Admin
-      tags:
-      - Auth
   /user/login:
     post:
       consumes:
