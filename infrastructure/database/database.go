@@ -1,5 +1,7 @@
 package database
 
+// Database
+
 import (
 	"fmt"
 

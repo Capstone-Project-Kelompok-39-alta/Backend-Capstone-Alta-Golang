@@ -1,5 +1,7 @@
 package middleware
 
+//JWT
+
 import (
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/database"
 

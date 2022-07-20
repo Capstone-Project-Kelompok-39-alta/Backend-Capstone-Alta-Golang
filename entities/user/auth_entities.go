@@ -1,5 +1,7 @@
 package user
 
+//entities User
+
 type User struct {
 	ID       uint   `gorm:"primaryKey"`
 	Name     string `json:"name" validate:"required" gorm:"size:32"`

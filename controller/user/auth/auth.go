@@ -8,6 +8,8 @@ import (
 	"github.com/labstack/echo/v4"
 )
 
+//controller Register & Login
+
 type AuthController struct {
 	Svc domains.AuthService
 }

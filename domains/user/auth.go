@@ -1,5 +1,7 @@
 package user
 
+//Domain Login & Register
+
 import (
 	entities "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/entities/user"
 )
