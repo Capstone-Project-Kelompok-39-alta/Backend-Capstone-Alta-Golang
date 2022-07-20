@@ -35,5 +35,6 @@ jobs:
             docker stop capstone-project
             docker container rm capstone-project
             docker images -a -q | xargs docker rmi -f
-            docker pull sautmanurung234/capstone-project:v1
-            docker run -p 80:8080 --name capstone-project --detach sautmanurung234/capstone-project:v1
+            cd Backend-Capstone-Alta-Golang
+            git pull origin main
+            docker-compose down && docker-compose up --build -d

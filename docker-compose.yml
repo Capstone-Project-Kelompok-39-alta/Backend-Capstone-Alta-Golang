@@ -1,0 +1,12 @@
+version: "2.1"
+services:
+  be_app:
+    build: .
+    restart: always
+    environment:
+      SERVER_ADDRESS: "0.0.0.0:8080"
+    ports:
+      - "80:8080"
+
+volumes:
+  my-invoicevolume:
