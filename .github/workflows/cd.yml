@@ -37,4 +37,5 @@ jobs:
             docker images -a -q | xargs docker rmi -f
             cd Backend-Capstone-Alta-Golang
             git pull origin main
+            docker-compose up --build -d
             docker-compose down && docker-compose up --build -d
