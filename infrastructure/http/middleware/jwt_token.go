@@ -13,11 +13,3 @@ func JWTTokenMiddleware() echo.MiddlewareFunc {
 		SigningMethod: "HS256",
 	})
 }
-
-func JWTTokenMiddlewareUser() echo.MiddlewareFunc {
-	secret := database.Config{}
-	return middleware.JWTWithConfig(middleware.JWTConfig{
-		SigningKey:    []byte(secret.JWT_KEY),
-		SigningMethod: "HS256",
-	})
-}
