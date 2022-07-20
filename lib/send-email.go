@@ -7,11 +7,11 @@ import (
 )
 
 func SendEmail(message entities.SendCustomer) error {
-	server := "smtp-mail.outlook.com"
+	server := "smtp.office365.com"
 	port := 587
-	user := "rolandbrilianto@outlook.com"
+	user := "invoinesia-cs@outlook.com"
 	from := user
-	pass := "Kipasangin_1"
+	pass := "Mathilda234"
 	dest := message.To
 
 	auth := LoginAuth(user, pass)
