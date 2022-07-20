@@ -1,7 +1,7 @@
 package lib
 
 import (
-	"errors"
+	"fmt"
 	"net/smtp"
 )
 
@@ -21,7 +21,7 @@ func (l *loginAuth) Next(fromServer []byte, more bool) ([]byte, error) {
 		case "Password":
 			return []byte(l.password), nil
 		default:
-			return nil, errors.New("unknown from server")
+			return nil, fmt.Errorf("unknown from server")
 
 		}
 	}
