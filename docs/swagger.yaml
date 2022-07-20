@@ -106,16 +106,6 @@ definitions:
     - id_pegawai
     - password
     type: object
-  entities.LoginUser:
-    properties:
-      email:
-        type: integer
-      password:
-        type: string
-    required:
-    - email
-    - password
-    type: object
   entities.RegisterAdmin:
     properties:
       email:
@@ -129,19 +119,6 @@ definitions:
     required:
     - email
     - id_pegawai
-    - name
-    - password
-    type: object
-  entities.RegisterUser:
-    properties:
-      email:
-        type: string
-      name:
-        type: string
-      password:
-        type: string
-    required:
-    - email
     - name
     - password
     type: object
@@ -166,21 +143,6 @@ definitions:
         type: string
       updated_at:
         type: string
-    type: object
-  entities.User:
-    properties:
-      email:
-        type: string
-      id:
-        type: integer
-      name:
-        type: string
-      password:
-        type: string
-    required:
-    - email
-    - name
-    - password
     type: object
 host: backend-capstone-alta-golang-staging.up.railway.app
 info:
@@ -642,70 +604,6 @@ paths:
       summary: Get User With name
       tags:
       - Auth
-  /user/login:
-    post:
-      consumes:
-      - application/json
-      description: Login User
-      parameters:
-      - description: required
-        in: body
-        name: data
-        required: true
-        schema:
-          $ref: '#/definitions/entities.LoginUser'
-      produces:
-      - application/json
-      responses:
-        "200":
-          description: OK
-          schema:
-            $ref: '#/definitions/entities.User'
-        "400":
-          description: Bad Request
-          schema:
-            $ref: '#/definitions/entities.User'
-        "401":
-          description: Unauthorized
-          schema:
-            $ref: '#/definitions/entities.User'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/entities.User'
-      summary: Login User
-      tags:
-      - Auth User
-  /user/register:
-    post:
-      consumes:
-      - application/json
-      description: Create User Admin
-      parameters:
-      - description: required
-        in: body
-        name: data
-        required: true
-        schema:
-          $ref: '#/definitions/entities.RegisterUser'
-      produces:
-      - application/json
-      responses:
-        "201":
-          description: Created
-          schema:
-            $ref: '#/definitions/entities.User'
-        "401":
-          description: Unauthorized
-          schema:
-            $ref: '#/definitions/entities.User'
-        "500":
-          description: Internal Server Error
-          schema:
-            $ref: '#/definitions/entities.User'
-      summary: Register User
-      tags:
-      - Auth User
 schemes:
 - https
 - http
