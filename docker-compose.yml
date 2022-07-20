@@ -1,12 +1,30 @@
 version: "2.1"
 services:
+  db_app:
+    image: "mysql:latest"
+    restart: always
+    ports:
+      - "3306:3306"
+    environment:
+      MYSQL_ROOT_PASSWORD : invoinesia
+      MYSQL_DATABASE: invoinesia
+    volumes:
+      - my-invoinesiavolume:/var/lib/mysql
+    healthcheck:   # wajib implementasi health check jika condition service_healthy
+      test: ["CMD", "mysql", "-u", "root",  "-pinvoinesia", "-e", "show schemas"]
+      interval: 10s
+
   be_app:
     build: .
     restart: always
     environment:
       SERVER_ADDRESS: "0.0.0.0:8080"
+      DB_HOST: "db_app"
     ports:
       - "80:8080"
+    depends_on:
+      db_app:
+        condition: service_healthy # memastikan kalau sudah bisa konek dan login sesuai healthcheck
 
 volumes:
-  my-invoicevolume:
+  my-invoinesiavolume:

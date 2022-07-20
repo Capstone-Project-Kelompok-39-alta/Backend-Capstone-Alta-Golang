@@ -32,9 +32,6 @@ jobs:
           port: ${{ secrets.PORT }}
           key: ${{ secrets.KEY }}
           script: |
-            docker stop capstone-project
-            docker container rm capstone-project
-            docker images -a -q | xargs docker rmi -f
             cd Backend-Capstone-Alta-Golang
             git pull origin main
             docker-compose down && docker-compose up --build -d
