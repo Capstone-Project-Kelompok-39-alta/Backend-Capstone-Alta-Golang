@@ -26,7 +26,7 @@ func (co *SendCustomerController) SendEmailController(c echo.Context) error {
 	messages := entities.SendCustomer{}
 	err := c.Bind(&messages)
 
-	sendEmail := co.Svc.SendEmailService(messages)
+	err = co.Svc.SendEmailService(messages)
 	if err != nil {
 		return c.JSON(http.StatusInternalServerError, map[string]interface{}{
 			"message": "internal server error",
@@ -36,6 +36,6 @@ func (co *SendCustomerController) SendEmailController(c echo.Context) error {
 
 	return c.JSON(http.StatusCreated, map[string]interface{}{
 		"message": "success to send email",
-		"send":    sendEmail,
+		"send":    messages,
 	})
 }

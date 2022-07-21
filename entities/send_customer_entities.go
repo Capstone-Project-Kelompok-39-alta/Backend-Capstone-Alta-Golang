@@ -1,9 +1,9 @@
 package entities
 
 type SendCustomer struct {
-	To      string `json:"to"`
-	Subject string `json:"subject"`
-	Body    string `json:"body"`
+	To      string `json:"to" form:"to"`
+	Subject string `json:"subject" form:"subject"`
+	Body    string `json:"body" form:"body"`
 }
 
 func (*SendCustomer) TableName() string {

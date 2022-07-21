@@ -1,6 +1,7 @@
 package admin
 
 import (
+	"fmt"
 	domains "github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/domains/admin"
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/entities"
 	"github.com/Capstone-Project-Kelompok-39-alta/Backend-Capstone-Alta-Golang/infrastructure/database"
@@ -22,7 +23,7 @@ func NewSendCustomerService(repo domains.SendCustomerRepository, c database.Conf
 func (s *svcSendCustomer) SendEmailService(message entities.SendCustomer) error {
 	err := lib.SendEmail(message)
 	if err != nil {
-		return err
+		fmt.Println("this is error nya guys", err)
 	}
 	return s.repo.SendEmail(message)
 }

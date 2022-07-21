@@ -18,15 +18,15 @@ func TestSendCustomerService_SendEmailService(t *testing.T) {
 	}
 
 	t.Run("Success", func(t *testing.T) {
-		sendEmail.On("SendEmailService", mock.Anything).Return(nil).Once()
-		sendEmail := domains2.SendCustomerService(sendEmail)
-		err := sendEmail.SendEmailService(sendEmailData)
+		sendEmail.On("SendEmailService", mock.Anything, mock.Anything).Return(nil).Once()
+		sendsEmail := domains2.SendCustomerService(sendEmail)
+		err := sendsEmail.SendEmailService(sendEmailData)
 
 		assert.NoError(t, err)
 	})
 
 	t.Run("Failed", func(t *testing.T) {
-		sendEmail.On("SendEmailService", mock.Anything).Return(errors.New("error to make unit testing")).Once()
+		sendEmail.On("SendEmailService", mock.Anything, mock.Anything).Return(errors.New("error to make unit testing")).Once()
 		sendEmail := domains2.SendCustomerService(sendEmail)
 		err := sendEmail.SendEmailService(sendEmailData)
 
